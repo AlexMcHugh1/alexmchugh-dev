@@ -44,7 +44,7 @@ export default function About() {
 
           <div className="mt-10 reveal">
             <div className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-ink-faint">
-              // stack
+              {'// stack'}
             </div>
             <ul className="flex flex-wrap gap-2">
               {stack.map((t) => (
