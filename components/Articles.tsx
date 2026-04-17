@@ -9,7 +9,7 @@ export default function Articles() {
       <div className="mx-auto max-w-6xl px-6">
         <header className="mb-14 reveal">
           <div className="section-label">
-            <span className="font-mono text-ink-faint">03</span>
+            <span className="font-mono text-ink-faint">04</span>
             articles
           </div>
           <h2 className="section-title">Writing.</h2>

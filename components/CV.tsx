@@ -5,7 +5,7 @@ export default function CV() {
         <div className="grid gap-10 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
             <div className="section-label reveal">
-              <span className="font-mono text-ink-faint">04</span>
+              <span className="font-mono text-ink-faint">05</span>
               cv
             </div>
             <h2 className="section-title reveal">Experience &amp; credentials.</h2>
