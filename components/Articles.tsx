@@ -1,6 +1,7 @@
-// PLACEHOLDERS — replace ARTICLE_TITLE and ARTICLE_URL below when published.
-const ARTICLE_TITLE = 'ARTICLE_TITLE'; // TODO: replace with real article title
-const ARTICLE_URL = '#ARTICLE_URL'; // TODO: replace with real article URL
+const ARTICLE_TITLE =
+  'The Death of the Trusted Zone: Navigating Decentralised Security';
+const ARTICLE_URL =
+  'https://www.linkedin.com/posts/activity-7438227683089645568--bt6';
 
 export default function Articles() {
   return (
