@@ -12,7 +12,7 @@ The pipeline mirrors [getdfx.uk / ot-edge-asset-tag-generator](https://github.co
 │   ├── build-push.yaml                 # build/push + image-tag bump on push to main
 │   └── refresh-github-data.yaml        # daily fetch of pinned repos + contribution graph
 ├── k8s/
-│   ├── kustomization.yaml              # namespace: dfx, images field is CI-rewritten
+│   ├── kustomization.yaml              # namespace: alexmchugh-dev, images field is CI-rewritten
 │   ├── deployment.yaml                 # 1 replica, 100m CPU / 128Mi limit
 │   ├── service.yaml                    # ClusterIP :80
 │   └── ingress.yaml                    # nginx class, cert-manager letsencrypt-prod
@@ -30,7 +30,7 @@ The pipeline mirrors [getdfx.uk / ot-edge-asset-tag-generator](https://github.co
    kubectl apply -f argocd/application.yaml
    ```
 
-   ArgoCD will create the `dfx` namespace (same namespace as getdfx) if it does not exist and start reconciling `k8s/` into it.
+   ArgoCD will create the `alexmchugh-dev` namespace if it does not exist and start reconciling `k8s/` into it.
 
 3. **cert-manager ClusterIssuer** — this manifest assumes a `letsencrypt-prod` ClusterIssuer already exists in the cluster (same one getdfx uses). If not:
 
