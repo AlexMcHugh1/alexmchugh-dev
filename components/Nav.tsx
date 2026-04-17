@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react';
 
 const links = [
-  { href: '#about', label: 'About' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#github', label: 'GitHub' },
-  { href: '#articles', label: 'Articles' },
-  { href: '#cv', label: 'CV' },
+  { href: '#about', label: 'about' },
+  { href: '#projects', label: 'projects' },
+  { href: '#github', label: 'github' },
+  { href: '#articles', label: 'articles' },
+  { href: '#cv', label: 'cv' },
 ];
 
 export default function Nav() {
@@ -15,7 +15,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -24,30 +24,28 @@ export default function Nav() {
   return (
     <header
       className={[
-        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
+        'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200',
         scrolled
-          ? 'border-b border-line/70 bg-bg/70 backdrop-blur-md'
-          : 'border-b border-transparent bg-transparent',
+          ? 'border-line bg-bg/95'
+          : 'border-transparent bg-bg',
       ].join(' ')}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a
-          href="#top"
-          className="group flex items-center gap-2 font-mono text-sm tracking-tight"
-        >
-          <span className="text-accent">~/</span>
-          <span className="text-ink transition-colors group-hover:text-accent">
-            alexmchugh.dev
-          </span>
-          <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 bg-accent animate-cursor-blink" />
+      <div className="mx-auto flex h-12 max-w-5xl items-center justify-between px-5 font-mono text-sm">
+        <a href="#top" className="flex items-center gap-0 hover:opacity-90">
+          <span className="text-prompt">alex</span>
+          <span className="text-ink-faint">@</span>
+          <span className="text-[#b3c48c]">mchugh</span>
+          <span className="text-ink-faint">:</span>
+          <span className="text-ink">~</span>
+          <span className="ml-1 text-ink-faint">$</span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-5 md:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="rounded-sm px-3 py-2 font-mono text-sm text-ink-muted transition-colors hover:text-accent"
+              className="text-ink-muted transition-colors hover:text-accent"
             >
               {l.label}
             </a>
@@ -59,46 +57,26 @@ export default function Nav() {
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-line text-ink-muted transition-colors hover:text-accent md:hidden"
+          className="inline-flex h-8 w-8 items-center justify-center text-ink-muted hover:text-ink md:hidden"
         >
-          <span className="sr-only">Menu</span>
-          <div className="flex h-3 w-4 flex-col justify-between">
-            <span
-              className={[
-                'block h-[2px] w-full bg-current transition-transform',
-                open ? 'translate-y-[5px] rotate-45' : '',
-              ].join(' ')}
-            />
-            <span
-              className={[
-                'block h-[2px] w-full bg-current transition-opacity',
-                open ? 'opacity-0' : 'opacity-100',
-              ].join(' ')}
-            />
-            <span
-              className={[
-                'block h-[2px] w-full bg-current transition-transform',
-                open ? '-translate-y-[5px] -rotate-45' : '',
-              ].join(' ')}
-            />
-          </div>
+          <span className="font-mono text-xs">{open ? '[x]' : '[≡]'}</span>
         </button>
       </div>
 
       <div
         className={[
-          'overflow-hidden border-t border-line/60 bg-bg/90 backdrop-blur-md md:hidden',
+          'overflow-hidden border-t border-line bg-bg md:hidden',
           open ? 'max-h-72' : 'max-h-0',
-          'transition-[max-height] duration-300 ease-out',
+          'transition-[max-height] duration-200 ease-out',
         ].join(' ')}
       >
-        <nav className="flex flex-col px-6 py-3">
+        <nav className="flex flex-col px-5 py-2 font-mono text-sm">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="rounded-sm px-2 py-3 font-mono text-sm text-ink-muted transition-colors hover:text-accent"
+              className="py-2 text-ink-muted transition-colors hover:text-accent"
             >
               {l.label}
             </a>

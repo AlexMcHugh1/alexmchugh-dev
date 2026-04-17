@@ -1,17 +1,10 @@
 import type { Metadata } from 'next';
-import { JetBrains_Mono, Syne, Inter } from 'next/font/google';
+import { JetBrains_Mono, Inter } from 'next/font/google';
 import './globals.css';
 
 const mono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
-  display: 'swap',
-});
-
-const display = Syne({
-  subsets: ['latin'],
-  variable: '--font-display',
-  weight: ['500', '600', '700', '800'],
   display: 'swap',
 });
 
@@ -24,7 +17,7 @@ const sans = Inter({
 export const metadata: Metadata = {
   title: 'Alex McHugh — DevSecOps Engineer',
   description:
-    'Portfolio of Alex McHugh — DevSecOps engineer and MSc Computer Science student. Secure software delivery, Kubernetes, GitOps, supply-chain security.',
+    'Portfolio of Alex McHugh — DevSecOps engineer and MSc Computer Science student.',
   metadataBase: new URL('https://alexmchugh.dev'),
   openGraph: {
     title: 'Alex McHugh — DevSecOps Engineer',
@@ -45,10 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${mono.variable} ${display.variable} ${sans.variable}`}
-    >
+    <html lang="en" className={`${mono.variable} ${sans.variable}`}>
       <body className="min-h-screen bg-bg text-ink antialiased">
         {children}
       </body>

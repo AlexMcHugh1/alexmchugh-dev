@@ -1,60 +1,47 @@
+import SectionHeader from './SectionHeader';
+
 export default function CV() {
   return (
-    <section id="cv" className="relative scroll-mt-24 py-28 md:py-36">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-10 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-5">
-            <div className="section-label reveal">
-              <span className="font-mono text-ink-faint">05</span>
-              cv
-            </div>
-            <h2 className="section-title reveal">Experience &amp; credentials.</h2>
-          </div>
+    <section id="cv" className="relative scroll-mt-20 py-20 md:py-28">
+      <div className="mx-auto max-w-5xl px-5">
+        <SectionHeader command="less cv.txt" title="cv" />
 
-          <div className="reveal md:col-span-7">
-            <p className="text-base leading-relaxed text-ink-muted md:text-lg">
-              Background in IT assurance and controls auditing, currently
-              focused on DevSecOps engineering — CI/CD, Kubernetes platform
-              security, supply-chain integrity, and SIEM/observability. Pursuing
-              an MSc in Computer Science alongside consulting engagements and
-              open-source work.
+        <div className="mt-8 grid gap-10 md:grid-cols-12 md:gap-12">
+          <div className="reveal md:col-span-8">
+            <p className="font-mono text-sm leading-relaxed text-ink-muted md:text-[15px]">
+              DevSecOps engineer — CI/CD, Kubernetes platform security,
+              supply-chain integrity, and SIEM/observability. Currently
+              finishing an MSc in Computer Science.
             </p>
 
-            <ul className="mt-8 grid gap-3 font-mono text-sm text-ink-muted">
-              <li className="flex items-center gap-3">
-                <span className="text-accent">▹</span>
-                MSc Computer Science{' '}
-                <span className="text-ink-faint">— in progress</span>
+            <ul className="mt-6 space-y-2 font-mono text-sm text-ink-muted">
+              <li>
+                <span className="text-ink-faint">-</span> DevSecOps engineering
               </li>
-              <li className="flex items-center gap-3">
-                <span className="text-accent">▹</span>
-                IT Assurance → DevSecOps{' '}
-                <span className="text-ink-faint">— multi-year transition</span>
+              <li>
+                <span className="text-ink-faint">-</span> Kubernetes, GitOps,
+                supply-chain security
               </li>
-              <li className="flex items-center gap-3">
-                <span className="text-accent">▹</span>
-                Kubernetes, GitOps, Supply-chain security{' '}
-                <span className="text-ink-faint">— focus areas</span>
+              <li>
+                <span className="text-ink-faint">-</span> MSc Computer Science
+                <span className="text-ink-faint"> (in progress)</span>
               </li>
             </ul>
+          </div>
 
-            <div className="mt-10 flex flex-wrap gap-3">
-              {/* PLACEHOLDER — drop CV at /public/cv.pdf */}
-              <a href="/cv.pdf" className="btn-primary" download>
-                <span className="text-accent/70">$</span>
-                Download CV
-                <span aria-hidden>↓</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/alexmchugh2026/"
-                target="_blank"
-                rel="noreferrer"
-                className="btn-ghost"
-              >
-                View on LinkedIn
-                <span aria-hidden>↗</span>
-              </a>
-            </div>
+          <div className="reveal flex flex-col gap-3 md:col-span-4">
+            {/* PLACEHOLDER — drop CV at /public/cv.pdf */}
+            <a href="/cv.pdf" className="btn-primary" download>
+              ./cv.pdf
+            </a>
+            <a
+              href="https://www.linkedin.com/in/alexmchugh2026/"
+              target="_blank"
+              rel="noreferrer"
+              className="btn"
+            >
+              linkedin.com ↗
+            </a>
           </div>
         </div>
       </div>

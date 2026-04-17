@@ -1,3 +1,5 @@
+import SectionHeader from './SectionHeader';
+
 type Project = {
   title: string;
   tagline: string;
@@ -53,23 +55,23 @@ const projects: Project[] = [
   },
   {
     title: 'Seiri',
-    tagline: 'Webhook & Cron Monitoring',
+    tagline: 'Webhook & cron monitoring',
     description:
       'B2B SaaS that catches the failures nobody notices — silent webhook drops and cron jobs that simply stop firing. Early stage.',
-    tech: ['SaaS', 'Observability', 'TBD'],
+    tech: ['SaaS', 'Observability'],
     status: 'early',
   },
   {
     title: 'Orion Belt',
-    tagline: 'Open-source PAM Gateway',
+    tagline: 'Open-source PAM gateway',
     description:
       'A privileged access management gateway for teams that have outgrown shared SSH keys but can’t justify an enterprise PAM. Early stage.',
     tech: ['Open Source', 'Go', 'Zero Trust'],
     status: 'early',
   },
   {
-    title: 'MSc AI Simulation',
-    tagline: 'Multi-agent Python Simulation',
+    title: 'Multi-agent simulation',
+    tagline: 'MSc research project',
     description:
       'Multi-agent simulation inspired by Project Hail Mary — autonomous agents coordinating under partial information in a grid world.',
     tech: ['Python', 'Multi-agent', 'Simulation'],
@@ -77,8 +79,8 @@ const projects: Project[] = [
     status: 'academic',
   },
   {
-    title: 'MSc Web App',
-    tagline: 'Campus Maintenance System',
+    title: 'Campus maintenance system',
+    tagline: 'MSc web app',
     description:
       'Full-stack maintenance management system for a university campus — ticketing, asset tracking, role-based workflows.',
     tech: ['React', 'Express', 'MongoDB', 'Node.js'],
@@ -88,82 +90,60 @@ const projects: Project[] = [
 
 const statusLabel: Record<NonNullable<Project['status']>, string> = {
   live: 'live',
-  early: 'early stage',
+  early: 'early',
   academic: 'academic',
   homelab: 'homelab',
 };
 
-const statusColor: Record<NonNullable<Project['status']>, string> = {
-  live: 'text-accent border-accent/40 bg-accent/5',
-  early: 'text-accent-cyan border-accent-cyan/40 bg-accent-cyan/5',
-  academic: 'text-ink-muted border-line bg-bg-elevated/60',
-  homelab: 'text-ink-muted border-line bg-bg-elevated/60',
-};
-
 export default function Projects() {
   return (
-    <section id="projects" className="relative scroll-mt-24 py-28 md:py-36">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-line to-transparent" />
-      <div className="mx-auto max-w-6xl px-6">
-        <header className="mb-14 flex flex-col gap-4 reveal md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="section-label">
-              <span className="font-mono text-ink-faint">02</span>
-              projects
-            </div>
-            <h2 className="section-title">Selected work.</h2>
-          </div>
-          <p className="max-w-md text-sm text-ink-muted">
-            Platform, product, and research — shipped, running, or under
-            construction.
-          </p>
-        </header>
+    <section id="projects" className="relative scroll-mt-20 py-20 md:py-28">
+      <div className="mx-auto max-w-5xl px-5">
+        <SectionHeader command="ls -l projects/" title="projects" />
 
-        <ul className="grid gap-6 md:grid-cols-2">
+        <ul className="mt-6 grid gap-4 md:grid-cols-2">
           {projects.map((p) => (
-            <li key={p.title} className="card group reveal">
-              <div className="mb-4 flex items-start justify-between gap-3">
+            <li key={p.title} className="card reveal flex flex-col">
+              <div className="mb-2 flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="font-display text-xl font-semibold tracking-tight text-ink">
+                  <h3 className="font-mono text-[15px] font-medium text-ink">
                     {p.title}
                   </h3>
-                  <p className="mt-0.5 font-mono text-xs text-ink-muted">
+                  <p className="mt-0.5 font-mono text-xs text-ink-faint">
                     {p.tagline}
                   </p>
                 </div>
                 {p.status ? (
-                  <span
-                    className={`shrink-0 rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider ${statusColor[p.status]}`}
-                  >
-                    {statusLabel[p.status]}
+                  <span className="shrink-0 font-mono text-[10px] uppercase tracking-wider text-ink-faint">
+                    [{statusLabel[p.status]}]
                   </span>
                 ) : null}
               </div>
 
-              <p className="mb-5 text-sm leading-relaxed text-ink-muted">
+              <p className="mb-4 flex-1 font-mono text-[13px] leading-relaxed text-ink-muted">
                 {p.description}
               </p>
 
-              <ul className="mb-5 flex flex-wrap gap-1.5">
+              <ul className="mb-4 flex flex-wrap gap-1.5">
                 {p.tech.map((t) => (
                   <li
                     key={t}
-                    className="rounded-sm border border-line/70 bg-bg-elevated/50 px-2 py-0.5 font-mono text-[11px] text-ink-muted"
+                    className="border border-line bg-transparent px-1.5 py-0 font-mono text-[11px] text-ink-muted"
                   >
                     {t}
                   </li>
                 ))}
               </ul>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-wrap items-center gap-4 border-t border-line pt-3 font-mono text-xs">
                 {p.live ? (
                   <a
                     href={p.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="link-underline font-mono text-xs"
+                    className="t-link"
                   >
-                    live <span aria-hidden>↗</span>
+                    ./live
                   </a>
                 ) : null}
                 {p.github ? (
@@ -171,14 +151,12 @@ export default function Projects() {
                     href={p.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="link-underline font-mono text-xs"
+                    className="t-link"
                   >
-                    github <span aria-hidden>↗</span>
+                    ./source
                   </a>
                 ) : null}
               </div>
-
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/0 to-transparent transition-all duration-500 group-hover:via-accent/40" />
             </li>
           ))}
         </ul>

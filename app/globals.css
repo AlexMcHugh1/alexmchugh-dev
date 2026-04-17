@@ -4,7 +4,6 @@
 
 :root {
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -14,100 +13,113 @@ html {
 
 html,
 body {
-  background-color: #0a0a0f;
-  color: #e6e6ec;
-  font-family: var(--font-sans);
+  background-color: #0c0c10;
+  color: #d4d4d4;
+  font-family: var(--font-mono);
+  font-feature-settings: 'zero', 'ss01';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(0, 255, 136, 0.25);
-  color: #e6e6ec;
+  background: rgba(229, 181, 103, 0.22);
+  color: #f5f3ee;
 }
 
-/* scan-line overlay for the whole document */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 60;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.018) 0px,
-    rgba(255, 255, 255, 0.018) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  mix-blend-mode: overlay;
-}
-
-/* subtle noise overlay */
+/* very subtle film grain — no scan lines, no glow */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 59;
-  opacity: 0.035;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
-/* custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: #0c0c10;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e1e2a;
-  border-radius: 4px;
+  background: #22222a;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a2a3a;
+  background: #2f2f38;
 }
 
 @layer components {
   .reveal {
-    @apply opacity-0 translate-y-3 transition-all duration-700 ease-out;
+    @apply opacity-0 translate-y-1 transition-all duration-500 ease-out;
   }
   .reveal.is-visible {
     @apply opacity-100 translate-y-0;
   }
 
+  /* a mono chip without any neon */
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-bg-elevated/60 px-3 py-1 text-xs font-mono text-ink-muted;
+    @apply inline-flex items-center gap-1.5 border border-line bg-transparent px-2 py-0.5 text-[11px] text-ink-muted;
   }
 
-  .chip-accent {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/5 px-3 py-1 text-xs font-mono text-accent;
-  }
-
-  .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-sm border border-accent/50 bg-accent/10 px-5 py-2.5 text-sm font-mono text-accent transition-all duration-200 hover:border-accent hover:bg-accent/20 hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-accent/40;
-  }
-
-  .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-sm border border-line bg-transparent px-5 py-2.5 text-sm font-mono text-ink transition-all duration-200 hover:border-ink-muted hover:bg-bg-elevated focus:outline-none focus:ring-2 focus:ring-ink-muted/40;
-  }
-
+  /* flat card: hairline border, no glow, subtle amber left rail on hover */
   .card {
-    @apply relative rounded-sm border border-line bg-bg-card/70 p-6 backdrop-blur-sm transition-all duration-300 hover:border-accent/40 hover:bg-bg-card;
+    @apply relative border border-line bg-bg-card/70 p-5 transition-colors duration-150 hover:border-ink-muted/60;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 -1px;
+    width: 2px;
+    background: transparent;
+    transition: background-color 150ms ease;
+  }
+  .card:hover::before {
+    background: #e5b567;
   }
 
-  .section-label {
-    @apply mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent/80;
+  /* terminal prompt, rendered inline as a section header */
+  .prompt {
+    @apply font-mono text-sm text-ink-muted;
+  }
+  .prompt-user {
+    color: #7aa7d6;
+  }
+  .prompt-host {
+    color: #b3c48c;
+  }
+  .prompt-path {
+    color: #d4d4d4;
+  }
+  .prompt-glyph {
+    color: #55555f;
+    margin: 0 0.35rem;
+  }
+  .prompt-cmd {
+    color: #d4d4d4;
+  }
+
+  /* plain ghost link styled like an inline terminal reference */
+  .t-link {
+    @apply text-accent underline-offset-2 hover:underline;
+  }
+
+  /* flat button with no glow */
+  .btn {
+    @apply inline-flex items-center gap-2 border border-line bg-transparent px-3.5 py-2 font-mono text-sm text-ink transition-colors duration-150 hover:border-accent hover:text-accent focus:outline-none focus:ring-1 focus:ring-accent/40;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 border border-accent/70 bg-transparent px-3.5 py-2 font-mono text-sm text-accent transition-colors duration-150 hover:bg-accent/10 focus:outline-none focus:ring-1 focus:ring-accent/40;
+  }
+
+  .hr-soft {
+    @apply border-t border-line;
   }
 
   .section-title {
-    @apply font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl;
-  }
-
-  .link-underline {
-    @apply relative inline-flex items-center gap-1 text-ink-muted transition-colors hover:text-accent;
+    @apply font-mono text-base font-medium text-ink;
   }
 }
