@@ -19,7 +19,7 @@ export default function Footer() {
             github ↗
           </a>
           <a
-            href="https://www.linkedin.com/in/alexmchugh2026/"
+            href="https://www.linkedin.com/in/alexmchughdev/"
             target="_blank"
             rel="noreferrer"
             className="hover:text-accent"
