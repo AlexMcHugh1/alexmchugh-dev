@@ -17,8 +17,8 @@ const PY_FILES = [
 const CELL_SIZE = 28;
 const GRID_CELLS = 20;
 const CANVAS_PX = CELL_SIZE * GRID_CELLS;
-const TICK_MS = 300;
-const FLASHBACK_PAUSE_MS = 3500;
+const TICK_MS = 600;
+const FLASHBACK_PAUSE_MS = 7000;
 const LOG_MAX_LINES = 400;
 
 const CELL_COLOURS: Record<string, string> = {
@@ -138,14 +138,19 @@ export default function SimulationClient() {
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
-      ctx.fillStyle = '#0a0a1a';
-      ctx.fillRect(0, 0, CANVAS_PX, CANVAS_PX);
+      ctx.clearRect(0, 0, CANVAS_PX, CANVAS_PX);
 
       for (let y = 0; y < GRID_CELLS; y++) {
         for (let x = 0; x < GRID_CELLS; x++) {
-          ctx.fillStyle = CELL_COLOURS[cells[y][x]] ?? '#0a0a1a';
-          ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-          ctx.strokeStyle = '#1a1a2e';
+          const cell = cells[y][x];
+          // leave empty cells transparent so the SVG background shows through
+          if (cell !== '.') {
+            ctx.fillStyle = CELL_COLOURS[cell] ?? '#0a0a1a';
+            ctx.globalAlpha = cell === 'X' ? 0.78 : 0.88;
+            ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            ctx.globalAlpha = 1;
+          }
+          ctx.strokeStyle = 'rgba(255,255,255,0.04)';
           ctx.strokeRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         }
       }
@@ -420,12 +425,26 @@ sim = Simulation()
             </span>
           </div>
 
-          <div className="border border-line bg-bg-elevated p-2">
+          <div
+            className="border border-line p-2"
+            style={{
+              backgroundColor: '#060a14',
+              backgroundImage: "url('/simulation/bg.svg')",
+              backgroundSize: `${CANVAS_PX}px ${CANVAS_PX}px`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+            }}
+          >
             <canvas
               ref={canvasRef}
               width={CANVAS_PX}
               height={CANVAS_PX}
-              style={{ width: CANVAS_PX, height: CANVAS_PX, display: 'block' }}
+              style={{
+                width: CANVAS_PX,
+                height: CANVAS_PX,
+                display: 'block',
+                background: 'transparent',
+              }}
             />
           </div>
 

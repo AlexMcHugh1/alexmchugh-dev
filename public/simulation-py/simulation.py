@@ -6,7 +6,7 @@ from taumoeba import TaumoebaCulture
 from mission import MissionProtocol
 
 MAX_TURNS = 50
-FLASHBACK_PAUSE_SECONDS = 3.0
+FLASHBACK_PAUSE_SECONDS = 6.0
 
 
 class Simulation:
