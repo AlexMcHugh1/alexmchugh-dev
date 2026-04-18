@@ -12,6 +12,12 @@ const USER_POST_URL =
 const DELTAFLARE_REPOST_URL =
   'https://www.linkedin.com/feed/update/urn:li:activity:7438235126880239616/?originTrackingId=%2BDOv98%2BDBMzNOD5JV1Axvg%3D%3D';
 
+const QA_ARTICLE_TITLE =
+  'How I built an open source visual QA tool after every AI agent I tried failed';
+
+const QA_POST_URL =
+  'https://www.linkedin.com/feed/update/urn:li:activity:7451324085927727104/?originTrackingId=KiKB8a9rIS2zzSIRry0%2BWQ%3D%3D';
+
 export default function Articles() {
   return (
     <section id="articles" className="relative scroll-mt-8 py-12 md:py-16">
@@ -47,6 +53,30 @@ export default function Articles() {
             had perimeters. IoT, remote telemetry, and hybrid work have turned
             that perimeter into a fiction. The article explores what
             replaces it, and how to secure a decentralised world in practice.
+          </p>
+        </article>
+
+        <article className="card reveal relative mt-6">
+          <div className="mb-3 flex flex-wrap items-center gap-2 font-mono text-[11px] text-ink-faint">
+            <span className="text-pink">[recent]</span>
+          </div>
+
+          <h3 className="font-mono text-base font-medium leading-snug text-ink md:text-lg">
+            <a
+              href={QA_POST_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="before:absolute before:inset-0 before:content-['']"
+            >
+              {QA_ARTICLE_TITLE}
+            </a>
+          </h3>
+
+          <p className="mt-3 max-w-2xl font-mono text-[13px] leading-relaxed text-ink-muted">
+            I tried to automate QA testing with AI agents. They kept getting
+            lost in the DOM and navigating to random pages. So I built
+            something different. Here&rsquo;s what I learned and the open
+            source tool that came out of it.
           </p>
         </article>
       </div>
