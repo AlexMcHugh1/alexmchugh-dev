@@ -13,7 +13,7 @@ type Role = {
 
 const roles: Role[] = [
   {
-    company: 'Deltaflare',
+    company: 'deltaflare',
     title: 'Product Assurance Engineer',
     type: 'Part-time · On-site · London',
     dates: 'Oct 2025 – Present',
