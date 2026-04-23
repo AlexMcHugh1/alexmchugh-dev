@@ -104,12 +104,23 @@ function loadScriptOnce(src: string): Promise<void> {
   });
 }
 
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`image load failed: ${src}`));
+    img.src = src;
+  });
+}
+
 export default function SimulationClient() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const logRef = useRef<HTMLDivElement | null>(null);
   const pyodideRef = useRef<PyodideInterface | null>(null);
   const timerRef = useRef<number | null>(null);
   const runningRef = useRef<boolean>(false);
+  const graceSpriteRef = useRef<HTMLImageElement | null>(null);
+  const rockySpriteRef = useRef<HTMLImageElement | null>(null);
 
   const [ready, setReady] = useState<boolean>(false);
   const [status, setStatus] = useState<string>('booting pyodide runtime');
@@ -156,8 +167,8 @@ export default function SimulationClient() {
         }
       }
 
-      drawAgent(ctx, grace.x, grace.y, 'G', '#00ff88');
-      drawAgent(ctx, rocky.x, rocky.y, 'R', '#ff8800');
+      drawSpriteOrAgent(ctx, grace.x, grace.y, graceSpriteRef.current, 'G', '#00ff88');
+      drawSpriteOrAgent(ctx, rocky.x, rocky.y, rockySpriteRef.current, 'R', '#ff8800');
       for (const p of probes) {
         drawAgent(ctx, p.x, p.y, p.name.charAt(0), '#aaaaff');
       }
@@ -321,6 +332,19 @@ _log_buffer.seek(0); _log_buffer.truncate(0)
 
     async function boot() {
       try {
+        Promise.all([
+          loadImage('/simulation/grace.png'),
+          loadImage('/simulation/rocky.png'),
+        ])
+          .then(([g, r]) => {
+            if (cancelled) return;
+            graceSpriteRef.current = g;
+            rockySpriteRef.current = r;
+          })
+          .catch(() => {
+            // fall back to letter rendering
+          });
+
         await loadScriptOnce(PYODIDE_CDN);
         if (cancelled) return;
         if (!window.loadPyodide) throw new Error('loadPyodide missing');
@@ -642,4 +666,25 @@ function drawAgent(
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(label, cx, cy);
+}
+
+function drawSpriteOrAgent(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  sprite: HTMLImageElement | null,
+  fallbackLabel: string,
+  fallbackColour: string,
+) {
+  if (!sprite || !sprite.complete || sprite.naturalWidth === 0) {
+    drawAgent(ctx, x, y, fallbackLabel, fallbackColour);
+    return;
+  }
+  const size = CELL_SIZE - 4;
+  const cx = x * CELL_SIZE + (CELL_SIZE - size) / 2;
+  const cy = y * CELL_SIZE + (CELL_SIZE - size) / 2;
+  const prev = ctx.imageSmoothingEnabled;
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(sprite, cx, cy, size, size);
+  ctx.imageSmoothingEnabled = prev;
 }
