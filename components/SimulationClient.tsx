@@ -402,7 +402,7 @@ sim = Simulation()
       </header>
 
       <div className="flex flex-col gap-5 lg:flex-row lg:items-start">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3" style={{ width: CANVAS_PX + 18 }}>
           <div className="flex items-center gap-2">
             <button
               type="button"
