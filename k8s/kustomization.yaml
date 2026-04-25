@@ -8,4 +8,4 @@ resources:
 images:
 - name: ghcr.io/alexmchughdev/alexmchugh-dev
   newName: ghcr.io/alexmchughdev/alexmchugh-dev
-  newTag: sha-d90d698
+  newTag: sha-9c7f48d
