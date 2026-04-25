@@ -31,6 +31,7 @@ class Simulation:
         self.__visited_adrian: bool = False
         self.__rocky_encountered: bool = False
         self.__ship_destroyed: bool = False
+        self.__failure_reason: str | None = None
         self.__speed_multiplier: float = speed_multiplier
 
     @property
@@ -73,6 +74,10 @@ class Simulation:
     def ship_destroyed(self) -> bool:
         return self.__ship_destroyed
 
+    @property
+    def failure_reason(self) -> str | None:
+        return self.__failure_reason
+
     def is_mission_complete(self) -> bool:
         return self.__is_mission_complete()
 
@@ -111,6 +116,7 @@ class Simulation:
                 grace_alive=self.__grace.is_alive(),
                 ship_destroyed=self.__ship_destroyed
             ):
+                self.__record_failure_reason()
                 break
 
             if self.__is_mission_complete():
@@ -130,7 +136,7 @@ class Simulation:
                 pass
             if sim.is_mission_complete():
                 outcome = "complete"
-            elif sim.ship_destroyed or not sim.grace.is_alive():
+            elif sim.failure_reason is not None:
                 outcome = "failed"
             else:
                 outcome = "timed_out"
@@ -139,6 +145,7 @@ class Simulation:
                 "viable_strain": sim.culture.viable_strain,
                 "probes_transmitted": sum(1 for p in sim.probes if p.data_transmitted),
                 "mission_outcome": outcome,
+                "failure_reason": sim.failure_reason if outcome == "failed" else None,
             })
         return results
 
@@ -163,6 +170,7 @@ class Simulation:
             grace_alive=self.__grace.is_alive(),
             ship_destroyed=self.__ship_destroyed
         ):
+            self.__record_failure_reason()
             return False
         if self.__is_mission_complete():
             return False
@@ -176,11 +184,15 @@ class Simulation:
 
         elif self.__turn >= GRACE_LATE_GAME_TURN and len(self.__probes) == 0:
             if self.__is_on_hail_mary():
+                energy_before = self.__grace.energy
                 probe = self.__grace.deploy_probe(
                     self.__grid, viable_strain=self.__culture.viable_strain
                 )
                 if probe:
                     self.__probes.append(probe)
+                    self.__protocol.check_resource_waste(
+                        "deploy_probe", energy_before, self.__grace.energy
+                    )
                     if probe.carries_viable_strain:
                         self.__astrophage.notify_taumoeba_deployed()
             else:
@@ -188,9 +200,13 @@ class Simulation:
 
         elif self.__culture.viable_strain and len(self.__probes) < MAX_PROBES:
             if self.__is_on_hail_mary():
+                energy_before = self.__grace.energy
                 probe = self.__grace.deploy_probe(self.__grid, viable_strain=True)
                 if probe:
                     self.__probes.append(probe)
+                    self.__protocol.check_resource_waste(
+                        "deploy_probe", energy_before, self.__grace.energy
+                    )
                     self.__astrophage.notify_taumoeba_deployed()
             else:
                 self.__move_toward_hail_mary()
@@ -208,7 +224,11 @@ class Simulation:
                 self.__move_toward_adrian()
 
         elif len(self.__grace.inventory) >= GRACE_INVENTORY_EXPERIMENT_THRESHOLD:
+            energy_before = self.__grace.energy
             self.__grace.conduct_experiment()
+            self.__protocol.check_resource_waste(
+                "experiment", energy_before, self.__grace.energy
+            )
             self.__protocol.check_flashbacks(
                 self.__grace.knowledge_score,
                 self.__visited_adrian,
@@ -309,6 +329,16 @@ class Simulation:
     def __navigate_probes(self) -> None:
         for probe in self.__probes:
             probe.navigate(self.__grid)
+
+    def __record_failure_reason(self) -> None:
+        if self.__failure_reason is not None:
+            return
+        if self.__ship_destroyed:
+            self.__failure_reason = "ship_destroyed"
+        elif not self.__grace.is_alive():
+            self.__failure_reason = "grace_died"
+        elif self.__protocol.cooperation_score <= 0:
+            self.__failure_reason = "cooperation_lost"
 
     def __is_on_adrian(self) -> bool:
         return self.__grid.get_cell(self.__grace.x, self.__grace.y) == ADRIAN
