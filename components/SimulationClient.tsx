@@ -351,7 +351,7 @@ json.dumps({
 import json as _json
 _outcome = (
     'complete' if sim.is_mission_complete()
-    else 'failed' if (sim.ship_destroyed or not sim.grace.is_alive())
+    else 'failed' if sim.failure_reason is not None
     else 'timed_out'
 )
 _json.dumps({
