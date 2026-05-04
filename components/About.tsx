@@ -5,11 +5,11 @@ type Group = { label: string; items: string[] };
 const stack: Group[] = [
   {
     label: 'languages',
-    items: ['Go', 'Python', 'JavaScript', 'Bash'],
+    items: ['Go', 'Python', 'JavaScript', 'SQL', 'Bash'],
   },
   {
     label: 'platform',
-    items: ['Linux', 'Git', 'Docker', 'Kubernetes'],
+    items: ['Linux', 'Git', 'Docker', 'Kubernetes', 'Terraform'],
   },
   {
     label: 'delivery',
