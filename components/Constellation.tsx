@@ -27,6 +27,8 @@ export default function Constellation() {
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const mobile = window.matchMedia('(max-width: 768px)').matches;
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const interactive = finePointer && !mobile;
     const count = mobile ? COUNT_MOBILE : COUNT_DESKTOP;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
@@ -50,8 +52,8 @@ export default function Constellation() {
     const seed = () => {
       particles = [];
       for (let i = 0; i < count; i++) {
-        const baseVx = (Math.random() - 0.5) * 0.18;
-        const baseVy = (Math.random() - 0.5) * 0.18;
+        const baseVx = (Math.random() - 0.5) * 0.55;
+        const baseVy = (Math.random() - 0.5) * 0.55;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -67,7 +69,7 @@ export default function Constellation() {
       ctx.clearRect(0, 0, width, height);
 
       for (const p of particles) {
-        if (mouse.active) {
+        if (interactive && mouse.active) {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
           const d = Math.hypot(dx, dy);
@@ -77,8 +79,8 @@ export default function Constellation() {
             p.vy += (dy / d) * force;
           }
         }
-        p.vx = p.vx * 0.96 + p.baseVx * 0.04;
-        p.vy = p.vy * 0.96 + p.baseVy * 0.04;
+        p.vx = p.vx * 0.985 + p.baseVx * 0.015;
+        p.vy = p.vy * 0.985 + p.baseVy * 0.015;
         p.x += p.vx;
         p.y += p.vy;
         if (p.x < -20) p.x = width + 20;
@@ -98,7 +100,7 @@ export default function Constellation() {
             const d = Math.sqrt(d2);
             let alpha = (1 - d / LINK_DIST) * 0.32;
 
-            if (mouse.active) {
+            if (interactive && mouse.active) {
               const mx = (a.x + b.x) * 0.5 - mouse.x;
               const my = (a.y + b.y) * 0.5 - mouse.y;
               const md = Math.hypot(mx, my);
@@ -119,7 +121,7 @@ export default function Constellation() {
 
       for (const p of particles) {
         let glow = 0;
-        if (mouse.active) {
+        if (interactive && mouse.active) {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
           const d = Math.hypot(dx, dy);
@@ -165,8 +167,10 @@ export default function Constellation() {
       resize();
       seed();
     });
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseleave', onLeave);
+    if (interactive) {
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseleave', onLeave);
+    }
     document.addEventListener('visibilitychange', onVisibility);
 
     if (reduce) tick();
@@ -174,8 +178,10 @@ export default function Constellation() {
 
     return () => {
       if (raf) cancelAnimationFrame(raf);
-      document.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseleave', onLeave);
+      if (interactive) {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseleave', onLeave);
+      }
       document.removeEventListener('visibilitychange', onVisibility);
     };
   }, []);
