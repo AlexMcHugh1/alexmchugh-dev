@@ -60,11 +60,7 @@ export default function Certifications() {
   return (
     <section id="certs" className="relative scroll-mt-8 py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader
-          number="04"
-          command="ls certifications/"
-          title="certifications"
-        />
+        <SectionHeader command="ls certs/" title="certs" />
 
         <ul className="mt-8 grid gap-4 sm:grid-cols-2">
           {certs.map((c) => {

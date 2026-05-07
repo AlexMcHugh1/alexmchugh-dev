@@ -22,7 +22,7 @@ export default function Articles() {
   return (
     <section id="articles" className="relative scroll-mt-8 py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader number="07" command="cat articles/*.md" title="writing" />
+        <SectionHeader command="cat articles/*.md" title="articles" />
 
         <article className="card reveal relative mt-6">
           <div className="mb-3 flex flex-wrap items-center gap-2 font-mono text-[11px] text-ink-faint">

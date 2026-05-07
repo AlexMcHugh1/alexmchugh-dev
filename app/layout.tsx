@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { JetBrains_Mono, Inter, Instrument_Serif } from 'next/font/google';
+import { JetBrains_Mono, Inter } from 'next/font/google';
 import './globals.css';
-import AsciiDonut from '@/components/AsciiDonut';
+import AsciiPipeline from '@/components/AsciiPipeline';
 
 const mono = JetBrains_Mono({
   subsets: ['latin'],
@@ -12,14 +12,6 @@ const mono = JetBrains_Mono({
 const sans = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
-  display: 'swap',
-});
-
-const display = Instrument_Serif({
-  subsets: ['latin'],
-  weight: '400',
-  style: ['normal', 'italic'],
-  variable: '--font-display',
   display: 'swap',
 });
 
@@ -44,13 +36,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${mono.variable} ${sans.variable} ${display.variable}`}
-    >
+    <html lang="en" className={`${mono.variable} ${sans.variable}`}>
       <body className="min-h-screen bg-bg text-ink antialiased">
-        <AsciiDonut />
-        {children}
+        <AsciiPipeline />
+        <div className="relative z-10">{children}</div>
       </body>
     </html>
   );

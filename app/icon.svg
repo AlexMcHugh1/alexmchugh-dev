@@ -1,21 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#89b4fa"/>
-      <stop offset="0.5" stop-color="#cba6f7"/>
-      <stop offset="1" stop-color="#f5c2e7"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="#0b0b12"/>
-  <rect x="0.5" y="0.5" width="63" height="63" rx="13.5" fill="none" stroke="url(#g)" stroke-opacity="0.55"/>
-  <text
-    x="32"
-    y="44"
-    text-anchor="middle"
-    font-family="ui-serif, 'Instrument Serif', Georgia, serif"
-    font-style="italic"
-    font-weight="400"
-    font-size="38"
-    fill="url(#g)"
-  >am.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#1e1e2e"/>
+  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+        font-family="JetBrains Mono, ui-monospace, Menlo, Consolas, monospace"
+        font-size="18" font-weight="600" fill="#cba6f7">$_</text>
 </svg>
