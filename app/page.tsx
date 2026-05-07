@@ -14,8 +14,8 @@ export default function Home() {
       <main className="relative">
         <Hero />
         <Experience />
-        <Certifications />
         <Education />
+        <Certifications />
         <GitHub />
         <Contributions />
         <Articles />
