@@ -11,19 +11,17 @@ type Particle = {
   baseVy: number;
 };
 
-const COUNT_DESKTOP = 70;
-const COUNT_MOBILE = 28;
-const LINK_DIST = 130;
-const MOUSE_RADIUS = 160;
+const COUNT_DESKTOP = 110;
+const COUNT_MOBILE = 45;
+const LINK_DIST = 170;
+const MOUSE_RADIUS = 240;
 
 export default function Constellation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -40,9 +38,8 @@ export default function Constellation() {
     const mouse = { x: -9999, y: -9999, active: false };
 
     const resize = () => {
-      const rect = container.getBoundingClientRect();
-      width = rect.width;
-      height = rect.height;
+      width = window.innerWidth;
+      height = window.innerHeight;
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       canvas.style.width = `${width}px`;
@@ -53,8 +50,8 @@ export default function Constellation() {
     const seed = () => {
       particles = [];
       for (let i = 0; i < count; i++) {
-        const baseVx = (Math.random() - 0.5) * 0.16;
-        const baseVy = (Math.random() - 0.5) * 0.16;
+        const baseVx = (Math.random() - 0.5) * 0.18;
+        const baseVy = (Math.random() - 0.5) * 0.18;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -75,7 +72,7 @@ export default function Constellation() {
           const dy = p.y - mouse.y;
           const d = Math.hypot(dx, dy);
           if (d < MOUSE_RADIUS && d > 0) {
-            const force = (1 - d / MOUSE_RADIUS) * 0.05;
+            const force = (1 - d / MOUSE_RADIUS) * 0.11;
             p.vx += (dx / d) * force;
             p.vy += (dy / d) * force;
           }
@@ -99,9 +96,19 @@ export default function Constellation() {
           const d2 = dx * dx + dy * dy;
           if (d2 < LINK_DIST * LINK_DIST) {
             const d = Math.sqrt(d2);
-            const alpha = (1 - d / LINK_DIST) * 0.28;
-            ctx.strokeStyle = `rgba(137,180,250,${alpha})`;
-            ctx.lineWidth = 0.6;
+            let alpha = (1 - d / LINK_DIST) * 0.32;
+
+            if (mouse.active) {
+              const mx = (a.x + b.x) * 0.5 - mouse.x;
+              const my = (a.y + b.y) * 0.5 - mouse.y;
+              const md = Math.hypot(mx, my);
+              if (md < MOUSE_RADIUS) {
+                alpha += (1 - md / MOUSE_RADIUS) * 0.4;
+              }
+            }
+
+            ctx.strokeStyle = `rgba(137,180,250,${Math.min(alpha, 0.85)})`;
+            ctx.lineWidth = 0.7;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -118,8 +125,8 @@ export default function Constellation() {
           const d = Math.hypot(dx, dy);
           if (d < MOUSE_RADIUS) glow = 1 - d / MOUSE_RADIUS;
         }
-        const r = 1.1 + glow * 1.2;
-        const alpha = 0.5 + glow * 0.4;
+        const r = 1.4 + glow * 2.2;
+        const alpha = 0.55 + glow * 0.4;
         ctx.fillStyle = `rgba(137,180,250,${alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
@@ -130,9 +137,8 @@ export default function Constellation() {
     };
 
     const onMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
       mouse.active = true;
     };
     const onLeave = () => {
@@ -140,47 +146,45 @@ export default function Constellation() {
       mouse.x = -9999;
       mouse.y = -9999;
     };
-    const onResize = () => {
-      resize();
-      seed();
-    };
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          visible = entry.isIntersecting;
-          if (visible && !raf && !reduce) raf = requestAnimationFrame(tick);
-          else if (!visible && raf) {
-            cancelAnimationFrame(raf);
-            raf = 0;
-          }
+    const onVisibility = () => {
+      if (document.hidden) {
+        visible = false;
+        if (raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
         }
-      },
-      { threshold: 0 },
-    );
+      } else if (!reduce) {
+        visible = true;
+        if (!raf) raf = requestAnimationFrame(tick);
+      }
+    };
 
     resize();
     seed();
-    io.observe(container);
-    window.addEventListener('resize', onResize);
-    container.addEventListener('mousemove', onMove);
-    container.addEventListener('mouseleave', onLeave);
+    window.addEventListener('resize', () => {
+      resize();
+      seed();
+    });
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseleave', onLeave);
+    document.addEventListener('visibilitychange', onVisibility);
 
     if (reduce) tick();
     else raf = requestAnimationFrame(tick);
 
     return () => {
-      io.disconnect();
       if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener('resize', onResize);
-      container.removeEventListener('mousemove', onMove);
-      container.removeEventListener('mouseleave', onLeave);
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseleave', onLeave);
+      document.removeEventListener('visibilitychange', onVisibility);
     };
   }, []);
 
   return (
-    <div ref={containerRef} aria-hidden className="absolute inset-0 z-0">
-      <canvas ref={canvasRef} className="h-full w-full" />
-    </div>
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-0"
+    />
   );
 }

@@ -35,47 +35,58 @@ export default function Contributions() {
       className="relative scroll-mt-16 py-20 md:py-28"
     >
       <div className="mx-auto max-w-5xl px-6">
-        <SectionHeader number="06" title="Open source" />
+        <SectionHeader number="03" title="Open source" />
 
-        <ul className="space-y-5">
+        <ul className="border-t border-line">
           {contributions.map((c) => (
-            <li key={c.prUrl}>
-              <article className="card reveal relative">
-                <div className="mb-3 flex flex-wrap items-center gap-2 font-mono text-xs text-ink-faint">
-                  {c.Icon ? (
-                    <c.Icon
-                      width={14}
-                      height={14}
-                      style={{ color: c.iconColor }}
-                    />
-                  ) : null}
-                  <span className="text-ink-muted">{c.repo}</span>
-                  <span className="text-ink-faint/60">·</span>
-                  <a
-                    href={c.prUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="relative z-10 text-accent transition-colors hover:text-accent-dim"
-                  >
-                    #{c.prNumber}
-                  </a>
+            <li key={c.prUrl} className="reveal border-b border-line">
+              <a
+                href={c.prUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group block py-8 transition-colors"
+              >
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8">
+                  <div className="md:col-span-3 md:pt-1">
+                    <div className="flex items-center gap-3">
+                      {c.Icon ? (
+                        <c.Icon
+                          width={28}
+                          height={28}
+                          style={{ color: c.iconColor }}
+                          className="shrink-0"
+                        />
+                      ) : null}
+                      <div className="min-w-0">
+                        <div className="truncate text-[12px] text-ink-muted">
+                          {c.repo}
+                        </div>
+                        <div className="text-[11px] text-ink-faint">
+                          merged · #{c.prNumber}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="md:col-span-9">
+                    <h3 className="text-lg text-ink transition-colors group-hover:text-accent md:text-xl">
+                      {c.title}
+                    </h3>
+                    <p className="mt-3 max-w-3xl text-[14px] leading-relaxed text-ink-muted md:text-[15px]">
+                      {c.description}
+                    </p>
+                    <div className="mt-4 inline-flex items-center gap-2 text-[12px] text-ink-faint transition-colors group-hover:text-accent">
+                      view pull request{' '}
+                      <span
+                        aria-hidden
+                        className="transition-transform group-hover:translate-x-0.5"
+                      >
+                        →
+                      </span>
+                    </div>
+                  </div>
                 </div>
-
-                <h3 className="text-lg font-medium leading-snug text-ink md:text-xl">
-                  <a
-                    href={c.prUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="before:absolute before:inset-0 before:content-['']"
-                  >
-                    {c.title}
-                  </a>
-                </h3>
-
-                <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-ink-muted">
-                  {c.description}
-                </p>
-              </article>
+              </a>
             </li>
           ))}
         </ul>

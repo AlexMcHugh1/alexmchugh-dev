@@ -44,7 +44,7 @@ export default function About() {
 
         <div className="grid gap-12 md:grid-cols-12 md:gap-16">
           <div className="reveal md:col-span-7">
-            <div className="space-y-5 text-base leading-relaxed text-ink-muted md:text-lg">
+            <div className="space-y-5 text-[15px] leading-[1.7] text-ink-muted md:text-base">
               <p>
                 Product assurance engineer pursuing DevSecOps. My current
                 work covers the security and reliability of software before
@@ -62,10 +62,10 @@ export default function About() {
           </div>
 
           <div className="reveal md:col-span-5">
-            <dl className="space-y-5">
+            <dl className="space-y-6">
               {stack.map((g) => (
                 <div key={g.label}>
-                  <dt className="mb-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+                  <dt className="mb-2.5 text-[10px] uppercase tracking-[0.22em] text-ink-faint">
                     {g.label}
                   </dt>
                   <dd>

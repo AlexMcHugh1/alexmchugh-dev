@@ -149,26 +149,29 @@ function PinCard({ repo }: { repo: Pin }) {
       href={repo.url}
       target="_blank"
       rel="noreferrer"
-      className="card reveal flex flex-col"
+      className="reveal group flex h-full flex-col border border-line p-5 transition-colors hover:border-ink-faint/70"
     >
-      <div className="mb-2 flex items-start justify-between gap-2">
-        <h3 className="font-mono text-sm font-medium text-ink">
+      <div className="mb-2 flex items-start justify-between gap-3">
+        <h3 className="text-[14px] text-ink transition-colors group-hover:text-accent">
           {repo.name}
         </h3>
-        <span aria-hidden className="text-xs text-ink-faint">
+        <span
+          aria-hidden
+          className="text-xs text-ink-faint transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        >
           ↗
         </span>
       </div>
 
-      <p className="mb-5 flex-1 text-sm leading-relaxed text-ink-muted">
+      <p className="mb-5 flex-1 text-[12px] leading-relaxed text-ink-muted">
         {repo.description || 'No description.'}
       </p>
 
-      <div className="flex items-center gap-4 border-t border-line pt-3 font-mono text-[11px] text-ink-faint">
+      <div className="flex items-center gap-4 text-[11px] text-ink-faint">
         {repo.language ? (
           <span className="inline-flex items-center gap-1.5">
             <span
-              className="inline-block h-2.5 w-2.5 rounded-full"
+              className="inline-block h-2 w-2 rounded-full"
               style={{ background: repo.language.color || '#8a8a92' }}
             />
             {repo.language.name}
@@ -195,10 +198,10 @@ export default function GitHub() {
   return (
     <section id="github" className="relative scroll-mt-16 py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
-        <SectionHeader number="05" title="GitHub" />
+        <SectionHeader number="04" title="GitHub" />
 
         {hasCalendar ? (
-          <div className="reveal border border-line bg-bg-card/40 p-5 md:p-6">
+          <div className="reveal border border-line p-5 md:p-6">
             <Calendar weeks={gh.calendar.weeks} total={gh.calendar.total} />
           </div>
         ) : null}
@@ -213,7 +216,7 @@ export default function GitHub() {
           </ul>
         ) : null}
 
-        <div className="mt-8 font-mono text-sm text-ink-faint">
+        <div className="mt-10 text-sm text-ink-faint">
           <a
             href="https://github.com/alexmchughdev"
             target="_blank"

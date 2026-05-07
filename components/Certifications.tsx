@@ -60,52 +60,67 @@ export default function Certifications() {
   return (
     <section id="certs" className="relative scroll-mt-16 py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
-        <SectionHeader number="04" title="Certifications" />
+        <SectionHeader number="06" title="Certifications" />
 
-        <ul className="grid gap-5 sm:grid-cols-2">
+        <ul className="grid gap-4 sm:grid-cols-2">
           {certs.map((c) => {
             const pending = !c.url;
             const inner = (
               <>
-                <div className="flex flex-1 gap-5">
+                <div className="flex flex-1 items-start gap-5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={c.badge}
                     alt=""
-                    width={68}
-                    height={68}
+                    width={80}
+                    height={80}
                     loading="lazy"
                     decoding="async"
-                    className={`h-[68px] w-[68px] shrink-0 object-contain ${
+                    className={`h-20 w-20 shrink-0 object-contain ${
                       pending ? 'opacity-40 grayscale' : ''
                     }`}
                   />
                   <div className="min-w-0 flex-1">
                     <h3
-                      className={`text-[15px] font-medium leading-snug ${
+                      className={`text-[14px] leading-snug ${
                         pending ? 'text-ink-muted' : 'text-ink'
                       }`}
                     >
                       {c.name}
                     </h3>
                     <p
-                      className={`mt-1 text-sm ${
+                      className={`mt-1 inline-flex items-center gap-2 text-[12px] ${
                         pending ? 'text-ink-faint' : 'text-ink-muted'
                       }`}
                     >
+                      <span
+                        aria-hidden
+                        className="inline-block h-1.5 w-1.5 rounded-full"
+                        style={{
+                          background: pending
+                            ? `${c.accent}66`
+                            : c.accent,
+                        }}
+                      />
                       {c.issuer}
                     </p>
-                    <p className="mt-3 font-mono text-[11px] text-ink-faint">
+                    <p className="mt-3 text-[11px] text-ink-faint">
                       {c.status
                         ? c.status
                         : `Issued ${c.issued}${c.expires ? ` · Expires ${c.expires}` : ''}`}
                     </p>
                   </div>
                 </div>
-                <div className="mt-5 flex items-center justify-end font-mono text-xs">
+                <div className="mt-5 flex items-center justify-end text-[12px]">
                   {c.url ? (
-                    <span className="text-accent transition-transform group-hover:translate-x-0.5">
-                      verify →
+                    <span className="text-ink-faint transition-colors group-hover:text-accent">
+                      verify{' '}
+                      <span
+                        aria-hidden
+                        className="inline-block transition-transform group-hover:translate-x-0.5"
+                      >
+                        →
+                      </span>
                     </span>
                   ) : (
                     <span className="text-ink-faint">— pending</span>
@@ -115,14 +130,10 @@ export default function Certifications() {
             );
 
             const baseClass =
-              'group reveal relative flex h-full flex-col border border-line border-l-[3px] p-6 transition-colors duration-200';
-            const hoverClass = pending
-              ? 'bg-bg-card/20'
-              : 'bg-bg-card/40 hover:border-ink-faint/70 hover:bg-bg-card/60';
-
-            const railColor = pending
-              ? `${c.accent}55`
-              : c.accent;
+              'group reveal relative flex h-full flex-col border border-line p-6 transition-colors duration-200';
+            const stateClass = pending
+              ? 'opacity-95'
+              : 'hover:border-ink-faint/70';
 
             return (
               <li key={c.name}>
@@ -131,16 +142,12 @@ export default function Certifications() {
                     href={c.url}
                     target="_blank"
                     rel="noreferrer"
-                    className={`${baseClass} ${hoverClass}`}
-                    style={{ borderLeftColor: railColor }}
+                    className={`${baseClass} ${stateClass}`}
                   >
                     {inner}
                   </a>
                 ) : (
-                  <div
-                    className={`${baseClass} ${hoverClass}`}
-                    style={{ borderLeftColor: railColor }}
-                  >
+                  <div className={`${baseClass} ${stateClass}`}>
                     {inner}
                   </div>
                 )}

@@ -1,16 +1,11 @@
 import type { Metadata } from 'next';
-import { JetBrains_Mono, Inter } from 'next/font/google';
+import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import Constellation from '@/components/Constellation';
 
 const mono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
-  display: 'swap',
-});
-
-const sans = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
   display: 'swap',
 });
 
@@ -35,9 +30,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${mono.variable} ${sans.variable}`}>
+    <html lang="en" className={mono.variable}>
       <body className="min-h-screen bg-bg text-ink antialiased">
-        {children}
+        <Constellation />
+        <div className="relative z-10">{children}</div>
       </body>
     </html>
   );
