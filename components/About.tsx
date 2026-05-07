@@ -40,7 +40,7 @@ export default function About() {
   return (
     <section id="about" className="relative scroll-mt-8 py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader command="cat about.md" title="about" />
+        <SectionHeader number="01" command="cat about.md" title="about" />
 
         <div className="mt-8 grid gap-10 md:grid-cols-12 md:gap-12">
           <div className="reveal md:col-span-7">
