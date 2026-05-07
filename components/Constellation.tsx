@@ -12,7 +12,6 @@ type Particle = {
 };
 
 const COUNT_DESKTOP = 110;
-const COUNT_MOBILE = 45;
 const LINK_DIST = 170;
 const MOUSE_RADIUS = 240;
 
@@ -25,11 +24,15 @@ export default function Constellation() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Skip on mobile / touch — fixed-canvas animation glitches against
+    // iOS address-bar resize and the touch-drag compositor.
     const mobile = window.matchMedia('(max-width: 768px)').matches;
     const finePointer = window.matchMedia('(pointer: fine)').matches;
-    const interactive = finePointer && !mobile;
-    const count = mobile ? COUNT_MOBILE : COUNT_DESKTOP;
+    if (mobile || !finePointer) return;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const interactive = true;
+    const count = COUNT_DESKTOP;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let width = 0;
@@ -190,7 +193,7 @@ export default function Constellation() {
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-0"
+      className="pointer-events-none fixed inset-0 z-0 hidden md:block"
     />
   );
 }
