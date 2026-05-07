@@ -5,11 +5,6 @@
 :root {
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Instrument Serif', 'Inter', ui-serif, Georgia, serif;
-  --bg: #0b0b12;
-  --bg-elev: #11111b;
-  --bg-card: #161624;
-  --line: #2a2a3e;
 }
 
 html {
@@ -18,36 +13,28 @@ html {
 
 html,
 body {
-  background-color: var(--bg);
+  background-color: #1e1e2e;
   color: #cdd6f4;
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-feature-settings: 'zero', 'ss01';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-body {
-  background:
-    radial-gradient(1200px 600px at 12% -10%, rgba(137, 180, 250, 0.08), transparent 60%),
-    radial-gradient(900px 600px at 95% 8%, rgba(203, 166, 247, 0.08), transparent 55%),
-    radial-gradient(700px 500px at 50% 110%, rgba(245, 194, 231, 0.06), transparent 60%),
-    var(--bg);
-  background-attachment: fixed;
-}
-
 ::selection {
-  background: rgba(203, 166, 247, 0.3);
-  color: #f5e0dc;
+  background: rgba(203, 166, 247, 0.28); /* mauve */
+  color: #f5e0dc; /* rosewater */
 }
 
+/* very subtle film grain; no scan lines, no glow */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 59;
-  opacity: 0.03;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
@@ -56,78 +43,31 @@ body::after {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-elev);
+  background: #181825; /* mantle */
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a3e;
-  border-radius: 6px;
+  background: #45475a; /* surface1 */
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3a52;
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  background: #585b70; /* surface2 */
 }
 
 @layer components {
   .reveal {
-    @apply opacity-0 translate-y-2 transition-all duration-700 ease-out;
+    @apply opacity-0 translate-y-1 transition-all duration-500 ease-out;
   }
   .reveal.is-visible {
     @apply opacity-100 translate-y-0;
   }
 
-  .display {
-    font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-  }
-
-  .display-italic {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.015em;
-  }
-
-  /* shimmer headline gradient */
-  .shimmer-text {
-    background: linear-gradient(
-      90deg,
-      #cdd6f4 0%,
-      #cba6f7 25%,
-      #89b4fa 50%,
-      #cba6f7 75%,
-      #cdd6f4 100%
-    );
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer 8s linear infinite;
-  }
-
+  /* chip: subtle surface0 border, bright text */
   .chip {
-    @apply inline-flex items-center gap-1.5 border border-line/80 bg-bg-card/40 px-2.5 py-0.5 text-[11px] text-ink backdrop-blur-sm;
+    @apply inline-flex items-center gap-1.5 border border-[#313244] bg-transparent px-2 py-0.5 text-[11px] text-ink;
   }
 
+  /* flat card: hairline border, no glow, subtle amber left rail on hover */
   .card {
-    @apply relative border border-line/70 bg-bg-card/50 p-5 backdrop-blur-sm transition-all duration-300 ease-out;
-    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.02) inset;
-  }
-  .card:hover {
-    @apply -translate-y-0.5 border-accent/40 bg-bg-card/70;
-    box-shadow:
-      0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
-      0 16px 40px -20px rgba(137, 180, 250, 0.25),
-      0 4px 12px -6px rgba(203, 166, 247, 0.12);
+    @apply relative border border-line bg-bg-card/70 p-5 transition-colors duration-150 hover:border-ink-muted/60;
   }
   .card::before {
     content: '';
@@ -135,32 +75,51 @@ body::after {
     inset: 0 auto 0 -1px;
     width: 2px;
     background: transparent;
-    transition: background-color 200ms ease;
+    transition: background-color 150ms ease;
   }
   .card:hover::before {
-    background: linear-gradient(180deg, #89b4fa 0%, #cba6f7 100%);
+    background: #89b4fa; /* blue */
   }
 
+  /* terminal prompt, rendered inline as a section header */
+  .prompt {
+    @apply font-mono text-sm text-ink-muted;
+  }
+  .prompt-user {
+    color: #cba6f7; /* mauve */
+  }
+  .prompt-host {
+    color: #cba6f7;
+  }
+  .prompt-path {
+    color: #89b4fa; /* blue */
+  }
+  .prompt-glyph {
+    color: #55555f;
+    margin: 0 0.35rem;
+  }
+  .prompt-cmd {
+    color: #d4d4d4;
+  }
+
+  /* plain ghost link styled like an inline terminal reference */
   .t-link {
-    @apply text-accent underline-offset-2 transition-colors hover:text-pink hover:underline;
+    @apply text-accent underline-offset-2 hover:underline;
   }
 
+  /* flat button with no glow */
   .btn {
-    @apply inline-flex items-center gap-2 border border-line bg-transparent px-3.5 py-2 font-mono text-sm text-ink transition-all duration-200 hover:border-accent hover:text-accent focus:outline-none focus:ring-1 focus:ring-accent/40;
+    @apply inline-flex items-center gap-2 border border-line bg-transparent px-3.5 py-2 font-mono text-sm text-ink transition-colors duration-150 hover:border-accent hover:text-accent focus:outline-none focus:ring-1 focus:ring-accent/40;
   }
   .btn-primary {
-    @apply inline-flex items-center gap-2 border border-accent/70 bg-accent/5 px-4 py-2 font-mono text-sm text-accent transition-all duration-200 hover:bg-accent/15 hover:shadow-[0_0_24px_-4px_rgba(137,180,250,0.4)] focus:outline-none focus:ring-1 focus:ring-accent/40;
+    @apply inline-flex items-center gap-2 border border-accent/70 bg-transparent px-3.5 py-2 font-mono text-sm text-accent transition-colors duration-150 hover:bg-accent/10 focus:outline-none focus:ring-1 focus:ring-accent/40;
   }
 
   .hr-soft {
-    @apply border-t border-line/60;
+    @apply border-t border-line;
   }
 
   .section-title {
     @apply font-mono text-base font-medium text-ink;
-  }
-
-  .glass {
-    @apply border border-line/60 bg-bg-card/40 backdrop-blur-md;
   }
 }

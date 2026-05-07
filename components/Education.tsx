@@ -4,7 +4,7 @@ export default function Education() {
   return (
     <section id="education" className="relative scroll-mt-8 py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader number="03" command="cat education.md" title="education" />
+        <SectionHeader command="cat education.md" title="education" />
 
         <div className="mt-6 space-y-5">
           {/* MSc — primary */}

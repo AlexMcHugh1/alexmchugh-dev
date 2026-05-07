@@ -36,9 +36,8 @@ export default function Contributions() {
     >
       <div className="mx-auto max-w-5xl px-5">
         <SectionHeader
-          number="06"
           command="gh pr list --author @me --state merged"
-          title="open source"
+          title="contributions"
         />
 
         <ul className="mt-6 space-y-4">
