@@ -4,27 +4,27 @@ type Group = { label: string; items: string[] };
 
 const stack: Group[] = [
   {
-    label: 'languages',
+    label: 'Languages',
     items: ['Go', 'Python', 'JavaScript', 'SQL', 'Bash'],
   },
   {
-    label: 'platform',
+    label: 'Platform',
     items: ['Linux', 'Git', 'Docker', 'Kubernetes', 'Terraform'],
   },
   {
-    label: 'delivery',
+    label: 'Delivery',
     items: ['ArgoCD', 'Kustomize', 'GitHub Actions'],
   },
   {
-    label: 'security',
+    label: 'Security',
     items: ['Vault', 'mTLS/PKI', 'cert-manager'],
   },
   {
-    label: 'observability',
+    label: 'Observability',
     items: ['Prometheus', 'Grafana'],
   },
   {
-    label: 'infrastructure',
+    label: 'Infrastructure',
     items: [
       'Proxmox',
       'Portainer',
@@ -38,13 +38,13 @@ const stack: Group[] = [
 
 export default function About() {
   return (
-    <section id="about" className="relative scroll-mt-8 py-12 md:py-16">
-      <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader command="cat about.md" title="about" />
+    <section id="about" className="relative scroll-mt-16 py-20 md:py-28">
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader number="01" title="About" />
 
-        <div className="mt-8 grid gap-10 md:grid-cols-12 md:gap-12">
+        <div className="grid gap-12 md:grid-cols-12 md:gap-16">
           <div className="reveal md:col-span-7">
-            <div className="space-y-4 font-mono text-sm leading-relaxed text-ink-muted md:text-[15px]">
+            <div className="space-y-5 text-base leading-relaxed text-ink-muted md:text-lg">
               <p>
                 Product assurance engineer pursuing DevSecOps. My current
                 work covers the security and reliability of software before
@@ -54,19 +54,19 @@ export default function About() {
               </p>
               <p>
                 I&rsquo;m finishing an MSc in Computer Science. My homelab
-                runs RKE2 with a full GitOps pipeline, Vault, and observability
-                tooling, which is where I work with production DevSecOps
-                patterns end to end.
+                runs RKE2 with a full GitOps pipeline, Vault, and
+                observability tooling, which is where I work with production
+                DevSecOps patterns end to end.
               </p>
             </div>
           </div>
 
           <div className="reveal md:col-span-5">
-            <dl className="space-y-3">
+            <dl className="space-y-5">
               {stack.map((g) => (
                 <div key={g.label}>
-                  <dt className="mb-1.5 font-mono text-[11px] text-ink-faint">
-                    # {g.label}
+                  <dt className="mb-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+                    {g.label}
                   </dt>
                   <dd>
                     <ul className="flex flex-wrap gap-1.5">

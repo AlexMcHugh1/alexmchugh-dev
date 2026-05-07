@@ -1,73 +1,78 @@
-type Entry = { href: string; label: string };
+import Constellation from './Constellation';
 
-const sections: Entry[] = [
-  { href: '#about', label: './about' },
-  { href: '#experience', label: './experience' },
-  { href: '#education', label: './education' },
-  { href: '#certs', label: './certs' },
-  { href: '#github', label: './github' },
-  { href: '#contributions', label: './contributions' },
-  { href: '#articles', label: './articles' },
+const sectionLinks = [
+  { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#education', label: 'Education' },
+  { href: '#certs', label: 'Certifications' },
+  { href: '#github', label: 'GitHub' },
+  { href: '#contributions', label: 'Open source' },
+  { href: '#articles', label: 'Writing' },
 ];
-
-function Prompt({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="font-mono text-sm">
-      <span className="text-prompt">alex@mchugh</span>
-      <span className="text-ink">:</span>
-      <span className="text-path">~</span>
-      <span className="mx-1 text-ink">$</span>
-      <span className="text-ink">{children}</span>
-    </span>
-  );
-}
 
 export default function Hero() {
   return (
-    <section id="top" className="relative pt-16 pb-10 md:pt-24 md:pb-14">
-      <div className="mx-auto w-full max-w-5xl px-5">
-        <div className="space-y-4">
-          <div>
-            <Prompt>whoami</Prompt>
-          </div>
+    <section
+      id="top"
+      className="relative isolate flex min-h-[90vh] items-center overflow-hidden"
+    >
+      <Constellation />
 
-          <div>
-            <h1 className="font-mono text-2xl font-medium leading-tight text-ink md:text-3xl">
-              Alex McHugh
-            </h1>
-            <p className="mt-1 font-mono text-sm text-ink-muted md:text-base">
-              DevSecOps Engineer · MSc Computer Science
-            </p>
-          </div>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-b from-transparent to-bg"
+      />
 
-          {/* CV download disabled until cv.pdf is provided — re-enable by uncommenting.
-          <div className="pt-1">
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-6 py-28 md:py-36">
+        <h1 className="text-5xl font-semibold leading-[0.98] tracking-tight text-ink md:text-7xl lg:text-[88px]">
+          Alex McHugh
+        </h1>
+
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">
+          DevSecOps engineer building secure, observable, GitOps-driven
+          platforms. Currently doing product assurance at{' '}
+          <span className="text-ink">deltaflare</span> while finishing an{' '}
+          <span className="text-ink">MSc in Computer Science</span>.
+        </p>
+
+        <nav
+          aria-label="Sections"
+          className="mt-14 flex flex-wrap gap-x-8 gap-y-3 text-[15px] text-ink-muted"
+        >
+          {sectionLinks.map((s) => (
             <a
-              href="/cv.pdf"
-              download
-              className="inline-flex items-center gap-2 border border-accent/70 px-3.5 py-2 font-mono text-sm text-accent transition-colors hover:bg-accent/10 focus:outline-none focus:ring-1 focus:ring-accent/40"
+              key={s.href}
+              href={s.href}
+              className="transition-colors duration-150 hover:text-ink"
             >
-              <span>↓</span> download cv.pdf
+              {s.label}
             </a>
-          </div>
-          */}
+          ))}
+        </nav>
 
-          <div className="pt-2">
-            <Prompt>ls ~/</Prompt>
-          </div>
-
-          <ul
-            role="list"
-            className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-sm"
+        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm text-ink-faint">
+          <a
+            href="https://github.com/alexmchughdev"
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors duration-150 hover:text-accent"
           >
-            {sections.map((s) => (
-              <li key={s.href}>
-                <a href={s.href} className="t-link">
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+            github →
+          </a>
+          <a
+            href="https://www.linkedin.com/in/alexmchughdev/"
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors duration-150 hover:text-accent"
+          >
+            linkedin →
+          </a>
+          <a
+            href="mailto:alex@alexmchugh.dev"
+            className="transition-colors duration-150 hover:text-accent"
+          >
+            email →
+          </a>
         </div>
       </div>
     </section>

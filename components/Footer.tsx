@@ -1,33 +1,30 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-line bg-bg">
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 py-8 md:flex-row md:items-center md:justify-between">
-        <div className="font-mono text-xs text-ink-faint">
-          <span className="text-prompt">alex@mchugh</span>
-          <span className="text-ink-muted">:</span>
-          <span className="text-path">~</span>
-          <span className="ml-1">$ echo &quot;&copy; 2026&quot;</span>
-        </div>
-
-        <nav className="flex flex-wrap items-center gap-5 font-mono text-xs text-ink-muted">
+    <footer className="mt-24 border-t border-line">
+      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-10 md:flex-row md:items-center md:justify-between">
+        <p className="text-sm text-ink-faint">© 2026 Alex McHugh</p>
+        <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm text-ink-faint">
+          <a
+            href="mailto:alex@alexmchugh.dev"
+            className="transition-colors hover:text-accent"
+          >
+            email
+          </a>
           <a
             href="https://github.com/alexmchughdev"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-accent"
+            className="transition-colors hover:text-accent"
           >
-            github ↗
+            github
           </a>
           <a
             href="https://www.linkedin.com/in/alexmchughdev/"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-accent"
+            className="transition-colors hover:text-accent"
           >
-            linkedin ↗
-          </a>
-          <a href="mailto:alex@alexmchugh.dev" className="hover:text-accent">
-            email ↗
+            linkedin
           </a>
         </nav>
       </div>

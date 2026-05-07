@@ -42,7 +42,7 @@ function Calendar({ weeks, total }: { weeks: Week[]; total: number }) {
   if (weeks.length === 0) {
     return (
       <p className="font-mono text-xs text-ink-faint">
-        # contribution data unavailable at build time
+        contribution data unavailable at build time
       </p>
     );
   }
@@ -152,16 +152,16 @@ function PinCard({ repo }: { repo: Pin }) {
       className="card reveal flex flex-col"
     >
       <div className="mb-2 flex items-start justify-between gap-2">
-        <h3 className="font-mono text-[14px] font-medium text-ink">
+        <h3 className="font-mono text-sm font-medium text-ink">
           {repo.name}
         </h3>
-        <span aria-hidden className="font-mono text-xs text-ink-faint">
+        <span aria-hidden className="text-xs text-ink-faint">
           ↗
         </span>
       </div>
 
-      <p className="mb-4 flex-1 font-mono text-[12px] leading-relaxed text-ink-muted">
-        {repo.description || '# no description'}
+      <p className="mb-5 flex-1 text-sm leading-relaxed text-ink-muted">
+        {repo.description || 'No description.'}
       </p>
 
       <div className="flex items-center gap-4 border-t border-line pt-3 font-mono text-[11px] text-ink-faint">
@@ -193,15 +193,12 @@ export default function GitHub() {
   if (!hasPinned && !hasCalendar) return null;
 
   return (
-    <section id="github" className="relative scroll-mt-8 py-12 md:py-16">
-      <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader
-          command="git log --oneline --graph"
-          title="github"
-        />
+    <section id="github" className="relative scroll-mt-16 py-20 md:py-28">
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader number="05" title="GitHub" />
 
         {hasCalendar ? (
-          <div className="mt-6 border border-line bg-bg-card/60 p-4 md:p-5 reveal">
+          <div className="reveal border border-line bg-bg-card/40 p-5 md:p-6">
             <Calendar weeks={gh.calendar.weeks} total={gh.calendar.total} />
           </div>
         ) : null}
@@ -216,14 +213,14 @@ export default function GitHub() {
           </ul>
         ) : null}
 
-        <div className="mt-6 font-mono text-xs text-ink-faint">
+        <div className="mt-8 font-mono text-sm text-ink-faint">
           <a
             href="https://github.com/alexmchughdev"
             target="_blank"
             rel="noreferrer"
-            className="t-link"
+            className="transition-colors hover:text-accent"
           >
-            github.com/alexmchughdev
+            github.com/alexmchughdev →
           </a>
         </div>
       </div>

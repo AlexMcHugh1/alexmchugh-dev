@@ -52,46 +52,57 @@ const certs: Cert[] = [
     issuer: 'HashiCorp',
     accent: '#7B42BC',
     badge: '/certs/terraform-associate.png',
-    status: 'in progress',
+    status: 'In progress',
   },
 ];
 
 export default function Certifications() {
   return (
-    <section id="certs" className="relative scroll-mt-8 py-12 md:py-16">
-      <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader command="ls certs/" title="certs" />
+    <section id="certs" className="relative scroll-mt-16 py-20 md:py-28">
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader number="04" title="Certifications" />
 
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+        <ul className="grid gap-5 sm:grid-cols-2">
           {certs.map((c) => {
+            const pending = !c.url;
             const inner = (
               <>
-                <div className="flex flex-1 gap-4">
+                <div className="flex flex-1 gap-5">
                   <img
                     src={c.badge}
                     alt=""
-                    width={64}
-                    height={64}
-                    className="h-16 w-16 shrink-0 object-contain"
+                    width={68}
+                    height={68}
+                    className={`h-[68px] w-[68px] shrink-0 object-contain ${
+                      pending ? 'opacity-40 grayscale' : ''
+                    }`}
                   />
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-mono text-[15px] font-medium leading-snug text-ink">
+                    <h3
+                      className={`text-[15px] font-medium leading-snug ${
+                        pending ? 'text-ink-muted' : 'text-ink'
+                      }`}
+                    >
                       {c.name}
                     </h3>
-                    <p className="mt-0.5 font-mono text-xs text-ink-muted">
+                    <p
+                      className={`mt-1 text-sm ${
+                        pending ? 'text-ink-faint' : 'text-ink-muted'
+                      }`}
+                    >
                       {c.issuer}
                     </p>
-                    <p className="mt-2 font-mono text-[11px] text-ink-faint">
+                    <p className="mt-3 font-mono text-[11px] text-ink-faint">
                       {c.status
                         ? c.status
                         : `Issued ${c.issued}${c.expires ? ` · Expires ${c.expires}` : ''}`}
                     </p>
                   </div>
                 </div>
-                <div className="mt-4 flex items-center justify-end font-mono text-xs">
+                <div className="mt-5 flex items-center justify-end font-mono text-xs">
                   {c.url ? (
                     <span className="text-accent transition-transform group-hover:translate-x-0.5">
-                      ↗ verify
+                      verify →
                     </span>
                   ) : (
                     <span className="text-ink-faint">— pending</span>
@@ -101,10 +112,14 @@ export default function Certifications() {
             );
 
             const baseClass =
-              'group relative flex h-full flex-col border border-line/70 border-l-[3px] bg-bg-card/50 p-5 backdrop-blur-sm transition-all duration-300 ease-out';
-            const hoverClass = c.url
-              ? 'hover:-translate-y-0.5 hover:border-ink-muted/60 hover:bg-bg-card/70'
-              : 'opacity-90';
+              'group reveal relative flex h-full flex-col border border-line border-l-[3px] p-6 transition-colors duration-200';
+            const hoverClass = pending
+              ? 'bg-bg-card/20'
+              : 'bg-bg-card/40 hover:border-ink-faint/70 hover:bg-bg-card/60';
+
+            const railColor = pending
+              ? `${c.accent}55`
+              : c.accent;
 
             return (
               <li key={c.name}>
@@ -114,14 +129,14 @@ export default function Certifications() {
                     target="_blank"
                     rel="noreferrer"
                     className={`${baseClass} ${hoverClass}`}
-                    style={{ borderLeftColor: c.accent }}
+                    style={{ borderLeftColor: railColor }}
                   >
                     {inner}
                   </a>
                 ) : (
                   <div
                     className={`${baseClass} ${hoverClass}`}
-                    style={{ borderLeftColor: c.accent }}
+                    style={{ borderLeftColor: railColor }}
                   >
                     {inner}
                   </div>

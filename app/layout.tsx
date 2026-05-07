@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Inter } from 'next/font/google';
 import './globals.css';
-import AsciiPipeline from '@/components/AsciiPipeline';
 
 const mono = JetBrains_Mono({
   subsets: ['latin'],
@@ -16,12 +15,12 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Alex McHugh · DevSecOps Engineer',
+  title: 'Alex McHugh — DevSecOps Engineer',
   description:
     'Portfolio of Alex McHugh. DevSecOps engineer and MSc Computer Science student.',
   metadataBase: new URL('https://alexmchugh.dev'),
   openGraph: {
-    title: 'Alex McHugh · DevSecOps Engineer',
+    title: 'Alex McHugh — DevSecOps Engineer',
     description:
       'DevSecOps engineer building secure, observable, GitOps-driven systems.',
     url: 'https://alexmchugh.dev',
@@ -38,8 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${mono.variable} ${sans.variable}`}>
       <body className="min-h-screen bg-bg text-ink antialiased">
-        <AsciiPipeline />
-        <div className="relative z-10">{children}</div>
+        {children}
       </body>
     </html>
   );

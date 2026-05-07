@@ -13,29 +13,18 @@ html {
 
 html,
 body {
-  background-color: #1e1e2e;
-  color: #cdd6f4;
-  font-family: var(--font-mono);
-  font-feature-settings: 'zero', 'ss01';
+  background-color: #0a0a10;
+  color: #e4e4ea;
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv11', 'ss01';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(203, 166, 247, 0.28); /* mauve */
-  color: #f5e0dc; /* rosewater */
-}
-
-/* very subtle film grain; no scan lines, no glow */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 59;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background: rgba(137, 180, 250, 0.25);
+  color: #ffffff;
 }
 
 ::-webkit-scrollbar {
@@ -43,83 +32,43 @@ body::after {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #181825; /* mantle */
+  background: #0a0a10;
 }
 ::-webkit-scrollbar-thumb {
-  background: #45475a; /* surface1 */
+  background: #22222d;
+  border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #585b70; /* surface2 */
+  background: #2e2e3a;
 }
 
 @layer components {
   .reveal {
-    @apply opacity-0 translate-y-1 transition-all duration-500 ease-out;
+    @apply opacity-0 translate-y-3 transition-all duration-700 ease-out;
   }
   .reveal.is-visible {
     @apply opacity-100 translate-y-0;
   }
 
-  /* chip: subtle surface0 border, bright text */
   .chip {
-    @apply inline-flex items-center gap-1.5 border border-[#313244] bg-transparent px-2 py-0.5 text-[11px] text-ink;
+    @apply inline-flex items-center gap-1.5 border border-line bg-bg-card/40 px-2.5 py-1 font-mono text-[12px] text-ink-muted;
   }
 
-  /* flat card: hairline border, no glow, subtle amber left rail on hover */
   .card {
-    @apply relative border border-line bg-bg-card/70 p-5 transition-colors duration-150 hover:border-ink-muted/60;
+    @apply relative border border-line bg-bg-card/50 p-6 transition-colors duration-200 ease-out;
   }
-  .card::before {
-    content: '';
-    position: absolute;
-    inset: 0 auto 0 -1px;
-    width: 2px;
-    background: transparent;
-    transition: background-color 150ms ease;
-  }
-  .card:hover::before {
-    background: #89b4fa; /* blue */
+  .card:hover {
+    @apply border-ink-faint/70;
   }
 
-  /* terminal prompt, rendered inline as a section header */
-  .prompt {
-    @apply font-mono text-sm text-ink-muted;
-  }
-  .prompt-user {
-    color: #cba6f7; /* mauve */
-  }
-  .prompt-host {
-    color: #cba6f7;
-  }
-  .prompt-path {
-    color: #89b4fa; /* blue */
-  }
-  .prompt-glyph {
-    color: #55555f;
-    margin: 0 0.35rem;
-  }
-  .prompt-cmd {
-    color: #d4d4d4;
-  }
-
-  /* plain ghost link styled like an inline terminal reference */
-  .t-link {
-    @apply text-accent underline-offset-2 hover:underline;
-  }
-
-  /* flat button with no glow */
+  /* Buttons + accent link preserved for /simulation */
   .btn {
     @apply inline-flex items-center gap-2 border border-line bg-transparent px-3.5 py-2 font-mono text-sm text-ink transition-colors duration-150 hover:border-accent hover:text-accent focus:outline-none focus:ring-1 focus:ring-accent/40;
   }
   .btn-primary {
     @apply inline-flex items-center gap-2 border border-accent/70 bg-transparent px-3.5 py-2 font-mono text-sm text-accent transition-colors duration-150 hover:bg-accent/10 focus:outline-none focus:ring-1 focus:ring-accent/40;
   }
-
-  .hr-soft {
-    @apply border-t border-line;
-  }
-
-  .section-title {
-    @apply font-mono text-base font-medium text-ink;
+  .t-link {
+    @apply text-accent underline-offset-2 hover:underline;
   }
 }
