@@ -1,25 +1,25 @@
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import GitHub from '@/components/GitHub';
-import Contributions from '@/components/Contributions';
-import Articles from '@/components/Articles';
 import Experience from '@/components/Experience';
-import Certifications from '@/components/Certifications';
+import Contributions from '@/components/Contributions';
+import GitHub from '@/components/GitHub';
 import Education from '@/components/Education';
+import Certifications from '@/components/Certifications';
+import Articles from '@/components/Articles';
 import Footer from '@/components/Footer';
 import RevealOnScroll from '@/components/RevealOnScroll';
 
 export default function Home() {
   return (
     <>
-      <main className="relative overflow-hidden">
+      <main className="relative">
         <Hero />
         <About />
         <Experience />
+        <Contributions />
+        <GitHub />
         <Education />
         <Certifications />
-        <GitHub />
-        <Contributions />
         <Articles />
       </main>
       <Footer />
