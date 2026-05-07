@@ -35,7 +35,7 @@ export default function Articles() {
   return (
     <section id="articles" className="relative scroll-mt-16 py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
-        <SectionHeader number="07" title="Writing" />
+        <SectionHeader number="06" title="Writing" />
 
         <ul className="border-t border-line">
           {posts.map((p) => (

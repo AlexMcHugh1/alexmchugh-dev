@@ -35,7 +35,7 @@ export default function Contributions() {
       className="relative scroll-mt-16 py-20 md:py-28"
     >
       <div className="mx-auto max-w-5xl px-6">
-        <SectionHeader number="03" title="Open source" />
+        <SectionHeader number="05" title="Open source" />
 
         <ul className="border-t border-line">
           {contributions.map((c) => (

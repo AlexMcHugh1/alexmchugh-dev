@@ -1,10 +1,9 @@
 const sectionLinks = [
-  { href: '#about', label: 'About' },
   { href: '#experience', label: 'Experience' },
-  { href: '#contributions', label: 'Open source' },
-  { href: '#github', label: 'GitHub' },
-  { href: '#education', label: 'Education' },
   { href: '#certs', label: 'Certifications' },
+  { href: '#education', label: 'Education' },
+  { href: '#github', label: 'GitHub' },
+  { href: '#contributions', label: 'Open source' },
   { href: '#articles', label: 'Writing' },
 ];
 
