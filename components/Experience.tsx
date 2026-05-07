@@ -34,7 +34,7 @@ export default function Experience() {
   return (
     <section id="experience" className="relative scroll-mt-8 py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader command="cat experience.yaml" title="experience" />
+        <SectionHeader number="02" command="cat experience.yaml" title="experience" />
 
         <ul className="mt-6 space-y-4">
           {roles.map((r) => (

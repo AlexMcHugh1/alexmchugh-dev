@@ -196,6 +196,7 @@ export default function GitHub() {
     <section id="github" className="relative scroll-mt-8 py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-5">
         <SectionHeader
+          number="05"
           command="git log --oneline --graph"
           title="github"
         />
