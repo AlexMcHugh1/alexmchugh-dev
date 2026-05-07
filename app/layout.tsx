@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Constellation from '@/components/Constellation';
+import ScrollReset from '@/components/ScrollReset';
 
 const mono = JetBrains_Mono({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={mono.variable}>
       <body className="min-h-screen bg-bg text-ink antialiased">
+        <ScrollReset />
         <Constellation />
         <div className="relative z-10">{children}</div>
       </body>
