@@ -68,11 +68,14 @@ export default function Certifications() {
             const inner = (
               <>
                 <div className="flex flex-1 gap-5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={c.badge}
                     alt=""
                     width={68}
                     height={68}
+                    loading="lazy"
+                    decoding="async"
                     className={`h-[68px] w-[68px] shrink-0 object-contain ${
                       pending ? 'opacity-40 grayscale' : ''
                     }`}
