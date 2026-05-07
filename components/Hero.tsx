@@ -1,7 +1,7 @@
 const sectionLinks = [
   { href: '#experience', label: 'Experience' },
-  { href: '#certs', label: 'Certifications' },
   { href: '#education', label: 'Education' },
+  { href: '#certs', label: 'Certifications' },
   { href: '#github', label: 'GitHub' },
   { href: '#contributions', label: 'Open source' },
   { href: '#articles', label: 'Writing' },

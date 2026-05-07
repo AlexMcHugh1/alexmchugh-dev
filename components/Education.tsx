@@ -20,7 +20,7 @@ export default function Education() {
   return (
     <section id="education" className="relative scroll-mt-16 py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
-        <SectionHeader number="03" title="Education" />
+        <SectionHeader number="02" title="Education" />
 
         <ul className="border-t border-line">
           {degrees.map((d) => (
