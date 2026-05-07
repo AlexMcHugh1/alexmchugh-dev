@@ -3,12 +3,9 @@ import SectionHeader from './SectionHeader';
 const ARTICLE_TITLE =
   'The Death of the Trusted Zone: Navigating Decentralised Security';
 
-// Clicking the card opens Alex's own LinkedIn post.
 const USER_POST_URL =
   'https://www.linkedin.com/posts/activity-7438227683089645568--bt6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEh31CcBN51w0RSiai2JMD1a5tLjziEr7F0';
 
-// The "published by deltaflare" chip links here independently of the rest of
-// the card.
 const DELTAFLARE_REPOST_URL =
   'https://www.linkedin.com/feed/update/urn:li:activity:7438235126880239616/?originTrackingId=%2BDOv98%2BDBMzNOD5JV1Axvg%3D%3D';
 
@@ -20,24 +17,25 @@ const QA_POST_URL =
 
 export default function Articles() {
   return (
-    <section id="articles" className="relative scroll-mt-8 py-12 md:py-16">
-      <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader command="cat articles/*.md" title="articles" />
+    <section id="articles" className="relative scroll-mt-16 py-20 md:py-28">
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader number="07" title="Writing" />
 
-        <article className="card reveal relative mt-6">
-          <div className="mb-3 flex flex-wrap items-center gap-2 font-mono text-[11px] text-ink-faint">
-            <span className="text-pink">[featured]</span>
+        <article className="card reveal relative">
+          <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
+            <span className="text-accent">Featured</span>
+            <span className="text-ink-faint/60">·</span>
             <a
               href={DELTAFLARE_REPOST_URL}
               target="_blank"
               rel="noreferrer"
-              className="relative z-10 t-link"
+              className="relative z-10 normal-case tracking-normal text-ink-muted transition-colors hover:text-accent"
             >
-              published by deltaflare
+              Published by deltaflare ↗
             </a>
           </div>
 
-          <h3 className="font-mono text-base font-medium leading-snug text-ink md:text-lg">
+          <h3 className="text-lg font-medium leading-snug text-ink md:text-xl">
             <a
               href={USER_POST_URL}
               target="_blank"
@@ -48,20 +46,20 @@ export default function Articles() {
             </a>
           </h3>
 
-          <p className="mt-3 max-w-2xl font-mono text-[13px] leading-relaxed text-ink-muted">
+          <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-ink-muted">
             The &ldquo;trusted zone&rdquo; is a relic of an era when systems
             had perimeters. IoT, remote telemetry, and hybrid work have turned
-            that perimeter into a fiction. The article explores what
-            replaces it, and how to secure a decentralised world in practice.
+            that perimeter into a fiction. The article explores what replaces
+            it, and how to secure a decentralised world in practice.
           </p>
         </article>
 
-        <article className="card reveal relative mt-6">
-          <div className="mb-3 flex flex-wrap items-center gap-2 font-mono text-[11px] text-ink-faint">
-            <span className="text-pink">[recent]</span>
+        <article className="card reveal relative mt-5">
+          <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
+            <span>Recent</span>
           </div>
 
-          <h3 className="font-mono text-base font-medium leading-snug text-ink md:text-lg">
+          <h3 className="text-lg font-medium leading-snug text-ink md:text-xl">
             <a
               href={QA_POST_URL}
               target="_blank"
@@ -72,7 +70,7 @@ export default function Articles() {
             </a>
           </h3>
 
-          <p className="mt-3 max-w-2xl font-mono text-[13px] leading-relaxed text-ink-muted">
+          <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-ink-muted">
             I tried to automate QA testing with AI agents. They kept getting
             lost in the DOM and navigating to random pages. So I built
             something different. Here&rsquo;s what I learned and the open

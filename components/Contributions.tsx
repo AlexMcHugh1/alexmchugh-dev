@@ -32,19 +32,16 @@ export default function Contributions() {
   return (
     <section
       id="contributions"
-      className="relative scroll-mt-8 py-12 md:py-16"
+      className="relative scroll-mt-16 py-20 md:py-28"
     >
-      <div className="mx-auto max-w-5xl px-5">
-        <SectionHeader
-          command="gh pr list --author @me --state merged"
-          title="contributions"
-        />
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader number="06" title="Open source" />
 
-        <ul className="mt-6 space-y-4">
+        <ul className="space-y-5">
           {contributions.map((c) => (
             <li key={c.prUrl}>
               <article className="card reveal relative">
-                <div className="mb-2 flex flex-wrap items-center gap-2 font-mono text-[11px] text-ink-faint">
+                <div className="mb-3 flex flex-wrap items-center gap-2 font-mono text-xs text-ink-faint">
                   {c.Icon ? (
                     <c.Icon
                       width={14}
@@ -52,19 +49,19 @@ export default function Contributions() {
                       style={{ color: c.iconColor }}
                     />
                   ) : null}
-                  <span className="text-pink">{c.repo}</span>
-                  <span>·</span>
+                  <span className="text-ink-muted">{c.repo}</span>
+                  <span className="text-ink-faint/60">·</span>
                   <a
                     href={c.prUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="relative z-10 t-link"
+                    className="relative z-10 text-accent transition-colors hover:text-accent-dim"
                   >
                     #{c.prNumber}
                   </a>
                 </div>
 
-                <h3 className="font-mono text-[15px] font-medium leading-snug text-ink">
+                <h3 className="text-lg font-medium leading-snug text-ink md:text-xl">
                   <a
                     href={c.prUrl}
                     target="_blank"
@@ -75,7 +72,7 @@ export default function Contributions() {
                   </a>
                 </h3>
 
-                <p className="mt-3 max-w-2xl font-mono text-[13px] leading-relaxed text-ink-muted">
+                <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-ink-muted">
                   {c.description}
                 </p>
               </article>

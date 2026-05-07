@@ -1,34 +1,29 @@
 import type { Config } from 'tailwindcss';
 
-// Catppuccin Mocha
-// https://github.com/catppuccin/catppuccin
 const config: Config = {
-  content: [
-    './app/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-  ],
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
         bg: {
-          DEFAULT: '#1e1e2e', // base
-          elevated: '#181825', // mantle
-          card: '#313244', // surface0
+          DEFAULT: '#0a0a10',
+          elevated: '#13131a',
+          card: '#13131a',
         },
         ink: {
-          DEFAULT: '#cdd6f4', // text
-          muted: '#a6adc8', // subtext0
-          faint: '#6c7086', // overlay0
+          DEFAULT: '#e4e4ea',
+          muted: '#9b9bab',
+          faint: '#5a5a68',
         },
         accent: {
-          DEFAULT: '#89b4fa', // blue
-          dim: '#74c7ec', // sapphire
+          DEFAULT: '#89b4fa',
+          dim: '#74c7ec',
         },
-        line: '#45475a', // surface1
-        prompt: '#cba6f7', // mauve
-        path: '#89b4fa', // blue
-        pink: '#f5c2e7', // pink
-        peach: '#fab387', // peach
+        line: '#22222d',
+        prompt: '#cba6f7',
+        path: '#89b4fa',
+        pink: '#f5c2e7',
+        peach: '#fab387',
         mauve: '#cba6f7',
         green: '#a6e3a1',
       },
