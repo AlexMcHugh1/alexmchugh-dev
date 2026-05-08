@@ -27,15 +27,15 @@ const CELL = 10;
 const GAP = 3;
 const WEEKDAY_LABELS = ['Mon', 'Wed', 'Fri'];
 
-// GitHub's dark-mode contribution palette
-// GitHub's dark-mode contribution palette, kept as-is so the graph reads
-// identically to github.com.
-function intensity(count: number): string {
-  if (count <= 0) return '#161b22';
-  if (count < 3) return '#0e4429';
-  if (count < 6) return '#006d32';
-  if (count < 10) return '#26a641';
-  return '#39d353';
+// Map a contribution count to a level 0-4. Cell colour is set in CSS so
+// it can adapt to the system colour scheme; see the .gh-l* classes in
+// app/globals.css.
+function level(count: number): 0 | 1 | 2 | 3 | 4 {
+  if (count <= 0) return 0;
+  if (count < 3) return 1;
+  if (count < 6) return 2;
+  if (count < 10) return 3;
+  return 4;
 }
 
 function Calendar({ weeks, total }: { weeks: Week[]; total: number }) {
@@ -81,8 +81,7 @@ function Calendar({ weeks, total }: { weeks: Week[]; total: number }) {
             {[0, 2, 5, 9, 20].map((n) => (
               <span
                 key={n}
-                className="inline-block h-2.5 w-2.5"
-                style={{ background: intensity(n) }}
+                className={`inline-block h-2.5 w-2.5 gh-l${level(n)}-bg`}
                 aria-hidden
               />
             ))}
@@ -104,7 +103,7 @@ function Calendar({ weeks, total }: { weeks: Week[]; total: number }) {
               y={18 + (i * 2 + 1) * (CELL + GAP) + CELL - 2}
               fontSize="9"
               fontFamily="ui-monospace, monospace"
-              fill="#55555f"
+              className="gh-axis"
             >
               {l}
             </text>
@@ -116,7 +115,7 @@ function Calendar({ weeks, total }: { weeks: Week[]; total: number }) {
               y={10}
               fontSize="9"
               fontFamily="ui-monospace, monospace"
-              fill="#55555f"
+              className="gh-axis"
             >
               {m.label}
             </text>
@@ -130,7 +129,7 @@ function Calendar({ weeks, total }: { weeks: Week[]; total: number }) {
                   y={d.weekday * (CELL + GAP)}
                   width={CELL}
                   height={CELL}
-                  fill={intensity(d.count)}
+                  className={`gh-l${level(d.count)}`}
                 >
                   <title>{`${d.count} contribution${d.count === 1 ? '' : 's'} on ${d.date}`}</title>
                 </rect>

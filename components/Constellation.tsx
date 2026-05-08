@@ -35,6 +35,13 @@ export default function Constellation() {
     const count = COUNT_DESKTOP;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
+    const themeMq = window.matchMedia('(prefers-color-scheme: dark)');
+    let particleRgb = themeMq.matches ? '137,180,250' : '37,99,235';
+    const onTheme = (e: MediaQueryListEvent) => {
+      particleRgb = e.matches ? '137,180,250' : '37,99,235';
+    };
+    themeMq.addEventListener('change', onTheme);
+
     let width = 0;
     let height = 0;
     let particles: Particle[] = [];
@@ -112,7 +119,7 @@ export default function Constellation() {
               }
             }
 
-            ctx.strokeStyle = `rgba(137,180,250,${Math.min(alpha, 0.85)})`;
+            ctx.strokeStyle = `rgba(${particleRgb},${Math.min(alpha, 0.85)})`;
             ctx.lineWidth = 0.7;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -132,7 +139,7 @@ export default function Constellation() {
         }
         const r = 1.4 + glow * 2.2;
         const alpha = 0.55 + glow * 0.4;
-        ctx.fillStyle = `rgba(137,180,250,${alpha})`;
+        ctx.fillStyle = `rgba(${particleRgb},${alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         ctx.fill();
@@ -186,6 +193,7 @@ export default function Constellation() {
         document.removeEventListener('mouseleave', onLeave);
       }
       document.removeEventListener('visibilitychange', onVisibility);
+      themeMq.removeEventListener('change', onTheme);
     };
   }, []);
 

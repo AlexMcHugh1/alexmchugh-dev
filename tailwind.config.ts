@@ -1,35 +1,36 @@
 import type { Config } from 'tailwindcss';
 
+const c = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
+
 const config: Config = {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
         bg: {
-          DEFAULT: '#0a0a10',
-          elevated: '#13131a',
-          card: '#13131a',
+          DEFAULT: c('bg'),
+          elevated: c('bg-elevated'),
+          card: c('bg-card'),
         },
         ink: {
-          DEFAULT: '#e4e4ea',
-          muted: '#9b9bab',
-          faint: '#5a5a68',
+          DEFAULT: c('ink'),
+          muted: c('ink-muted'),
+          faint: c('ink-faint'),
         },
         accent: {
-          DEFAULT: '#89b4fa',
-          dim: '#74c7ec',
+          DEFAULT: c('accent'),
+          dim: c('accent-dim'),
         },
-        line: '#22222d',
-        prompt: '#cba6f7',
-        path: '#89b4fa',
-        pink: '#f5c2e7',
-        peach: '#fab387',
-        mauve: '#cba6f7',
-        green: '#a6e3a1',
+        line: c('line'),
+        prompt: c('prompt'),
+        path: c('path'),
+        pink: c('pink'),
+        peach: c('peach'),
+        mauve: c('mauve'),
+        green: c('green'),
       },
       fontFamily: {
         mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
-        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui'],
       },
       animation: {
         'cursor-blink': 'blink 1.05s step-end infinite',
