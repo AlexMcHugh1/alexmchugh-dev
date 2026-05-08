@@ -150,9 +150,8 @@ export default function Contributions() {
             return (
               <li
                 key={c.prUrl}
-                className={`reveal border-b border-line ${
-                  visible ? '' : 'hidden'
-                }`}
+                className="reveal border-b border-line"
+                style={visible ? undefined : { display: 'none' }}
               >
                 <a
                   href={c.prUrl}
