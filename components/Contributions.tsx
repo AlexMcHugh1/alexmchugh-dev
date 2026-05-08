@@ -28,6 +28,17 @@ const contributions: Contribution[] = [
     iconColor: '#326CE5',
   },
   {
+    repo: 'kubernetes/kubernetes',
+    title:
+      'kubeadm: guard against missing context when finalizing join kubeconfig',
+    prNumber: 138853,
+    prUrl: 'https://github.com/kubernetes/kubernetes/pull/138853',
+    description:
+      "Bug fix in kubeadm's join kubeconfig finalisation. fetchInitConfigurationFromJoinConfiguration assigned to a context entry without first checking that current-context resolved to a real entry, producing a nil pointer dereference panic instead of a clear error when the TLS bootstrap kubeconfig was malformed. Adopted the same defensive lookup pattern already used elsewhere in the kubeadm codebase to surface a meaningful error.",
+    Icon: KubernetesIcon,
+    iconColor: '#326CE5',
+  },
+  {
     repo: 'prometheus/prometheus',
     title:
       'promql: reject NaN/Inf and fix overflow bound in duration expressions',
