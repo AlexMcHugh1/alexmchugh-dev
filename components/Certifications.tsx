@@ -63,6 +63,13 @@ const certs: Cert[] = [
     badge: '/certs/aws-saa.png',
     status: 'In progress',
   },
+  {
+    name: 'AWS Certified Solutions Architect – Associate',
+    issuer: 'Amazon Web Services',
+    accent: '#FF9900',
+    badge: '/certs/SAA.png',
+    status: 'In progress',
+  },
 ];
 
 export default function Certifications() {
