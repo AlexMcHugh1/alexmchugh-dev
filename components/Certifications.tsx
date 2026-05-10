@@ -13,6 +13,15 @@ type Cert = {
 
 const certs: Cert[] = [
   {
+    name: 'HashiCorp Certified: Terraform Associate',
+    issuer: 'HashiCorp',
+    issued: 'May 2026',
+    expires: 'May 2028',
+    accent: '#7B42BC',
+    url: 'https://www.credly.com/badges/8364211b-9187-482f-a95c-16d6d86a0643/public_url',
+    badge: '/certs/terraform-associate.png',
+  },
+  {
     name: 'CompTIA Security+',
     issuer: 'CompTIA',
     issued: 'Oct 2025',
@@ -48,10 +57,10 @@ const certs: Cert[] = [
     badge: '/certs/azure-fundamentals.svg',
   },
   {
-    name: 'HashiCorp Certified: Terraform Associate',
-    issuer: 'HashiCorp',
-    accent: '#7B42BC',
-    badge: '/certs/terraform-associate.png',
+    name: 'AWS Certified Solutions Architect – Associate',
+    issuer: 'Amazon Web Services',
+    accent: '#FF9900',
+    badge: '/certs/aws-saa.png',
     status: 'In progress',
   },
 ];
