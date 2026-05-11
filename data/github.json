@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-10T08:01:57.120Z",
+  "fetchedAt": "2026-05-11T09:31:05.614Z",
   "pinned": [
     {
       "name": "lookout",
@@ -7,6 +7,18 @@
       "url": "https://github.com/alexmchughdev/lookout",
       "stars": 6,
       "forks": 1,
+      "language": {
+        "name": "Go",
+        "color": "#00ADD8"
+      },
+      "topics": []
+    },
+    {
+      "name": "foghorn",
+      "description": "Self-contained anomaly detector for Slack service-status channels. Single Go binary, deterministic clustering, no external AI services.",
+      "url": "https://github.com/alexmchughdev/foghorn",
+      "stars": 1,
+      "forks": 0,
       "language": {
         "name": "Go",
         "color": "#00ADD8"
@@ -44,20 +56,20 @@
       "topics": []
     },
     {
-      "name": "campus-navigation-system",
-      "description": "Python Dash web app for campus navigation with Dijkstra routing, role-based access, admin CRUD, audit logging, and Plotly analytics.",
-      "url": "https://github.com/alexmchughdev/campus-navigation-system",
+      "name": "cerberus",
+      "description": "Know what's happening on your network before it becomes a problem: real-time eBPF monitoring",
+      "url": "https://github.com/alexmchughdev/cerberus",
       "stars": 1,
       "forks": 0,
       "language": {
-        "name": "Python",
-        "color": "#3572A5"
+        "name": "Go",
+        "color": "#00ADD8"
       },
       "topics": []
     }
   ],
   "calendar": {
-    "total": 677,
+    "total": 725,
     "weeks": [
       {
         "days": [
@@ -2072,7 +2084,7 @@
           },
           {
             "date": "2026-05-07",
-            "count": 20,
+            "count": 21,
             "weekday": 4
           },
           {
@@ -2091,8 +2103,13 @@
         "days": [
           {
             "date": "2026-05-10",
-            "count": 0,
+            "count": 24,
             "weekday": 0
+          },
+          {
+            "date": "2026-05-11",
+            "count": 23,
+            "weekday": 1
           }
         ]
       }
