@@ -39,6 +39,17 @@ const contributions: Contribution[] = [
     iconColor: '#326CE5',
   },
   {
+    repo: 'kubernetes/kubernetes',
+    title:
+      'kubelet/eviction: stop monitoring loop on context cancellation',
+    prNumber: 138854,
+    prUrl: 'https://github.com/kubernetes/kubernetes/pull/138854',
+    description:
+      "Fix for a goroutine leak in the kubelet eviction manager. The monitoring loop ran without checking whether its parent context had been cancelled, and an uninterruptible time.Sleep between iterations kept the goroutine alive during kubelet shutdown. Added a ctx.Done() check at the top of each iteration and replaced the bare sleep with a select so shutdown is honoured promptly.",
+    Icon: KubernetesIcon,
+    iconColor: '#326CE5',
+  },
+  {
     repo: 'prometheus/prometheus',
     title:
       'promql: reject NaN/Inf and fix overflow bound in duration expressions',
