@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-14T08:31:43.420Z",
+  "fetchedAt": "2026-05-15T08:43:08.787Z",
   "pinned": [
     {
       "name": "lookout",
@@ -12,6 +12,25 @@
         "color": "#00ADD8"
       },
       "topics": []
+    },
+    {
+      "name": "scorpius",
+      "description": "Chaos engineering toolkit for Linux services. Single Go binary, runs on bare metal, VMs, and edge hosts. No Kubernetes required.",
+      "url": "https://github.com/alexmchughdev/scorpius",
+      "stars": 0,
+      "forks": 0,
+      "language": {
+        "name": "Go",
+        "color": "#00ADD8"
+      },
+      "topics": [
+        "chaos-engineering",
+        "fault-injection",
+        "golang",
+        "linux",
+        "netem",
+        "reliability"
+      ]
     },
     {
       "name": "foghorn",
@@ -44,18 +63,6 @@
       "topics": []
     },
     {
-      "name": "OT-edge-asset-tag-generator",
-      "description": "Go microservice generating UUID asset tags and QR codes for OT edge device management. Deployed on RKE2 via Cloudflare Tunnel. No external API dependencies.",
-      "url": "https://github.com/alexmchughdev/OT-edge-asset-tag-generator",
-      "stars": 1,
-      "forks": 0,
-      "language": {
-        "name": "Go",
-        "color": "#00ADD8"
-      },
-      "topics": []
-    },
-    {
       "name": "cerberus",
       "description": "Know what's happening on your network before it becomes a problem: real-time eBPF monitoring",
       "url": "https://github.com/alexmchughdev/cerberus",
@@ -69,7 +76,7 @@
     }
   ],
   "calendar": {
-    "total": 729,
+    "total": 751,
     "weeks": [
       {
         "days": [
@@ -2079,12 +2086,12 @@
           },
           {
             "date": "2026-05-06",
-            "count": 12,
+            "count": 13,
             "weekday": 3
           },
           {
             "date": "2026-05-07",
-            "count": 21,
+            "count": 22,
             "weekday": 4
           },
           {
@@ -2118,13 +2125,18 @@
           },
           {
             "date": "2026-05-13",
-            "count": 2,
+            "count": 3,
             "weekday": 3
           },
           {
             "date": "2026-05-14",
-            "count": 0,
+            "count": 18,
             "weekday": 4
+          },
+          {
+            "date": "2026-05-15",
+            "count": 1,
+            "weekday": 5
           }
         ]
       }
