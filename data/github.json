@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-16T07:56:03.544Z",
+  "fetchedAt": "2026-05-17T08:13:58.541Z",
   "pinned": [
     {
       "name": "lookout",
@@ -76,47 +76,8 @@
     }
   ],
   "calendar": {
-    "total": 758,
+    "total": 871,
     "weeks": [
-      {
-        "days": [
-          {
-            "date": "2025-05-11",
-            "count": 0,
-            "weekday": 0
-          },
-          {
-            "date": "2025-05-12",
-            "count": 0,
-            "weekday": 1
-          },
-          {
-            "date": "2025-05-13",
-            "count": 0,
-            "weekday": 2
-          },
-          {
-            "date": "2025-05-14",
-            "count": 0,
-            "weekday": 3
-          },
-          {
-            "date": "2025-05-15",
-            "count": 0,
-            "weekday": 4
-          },
-          {
-            "date": "2025-05-16",
-            "count": 0,
-            "weekday": 5
-          },
-          {
-            "date": "2025-05-17",
-            "count": 0,
-            "weekday": 6
-          }
-        ]
-      },
       {
         "days": [
           {
@@ -2013,7 +1974,7 @@
           },
           {
             "date": "2026-04-23",
-            "count": 39,
+            "count": 48,
             "weekday": 4
           },
           {
@@ -2023,7 +1984,7 @@
           },
           {
             "date": "2026-04-25",
-            "count": 35,
+            "count": 40,
             "weekday": 6
           }
         ]
@@ -2037,7 +1998,7 @@
           },
           {
             "date": "2026-04-27",
-            "count": 13,
+            "count": 15,
             "weekday": 1
           },
           {
@@ -2071,12 +2032,12 @@
         "days": [
           {
             "date": "2026-05-03",
-            "count": 6,
+            "count": 7,
             "weekday": 0
           },
           {
             "date": "2026-05-04",
-            "count": 65,
+            "count": 67,
             "weekday": 1
           },
           {
@@ -2091,12 +2052,12 @@
           },
           {
             "date": "2026-05-07",
-            "count": 22,
+            "count": 31,
             "weekday": 4
           },
           {
             "date": "2026-05-08",
-            "count": 7,
+            "count": 13,
             "weekday": 5
           },
           {
@@ -2110,7 +2071,7 @@
         "days": [
           {
             "date": "2026-05-10",
-            "count": 24,
+            "count": 29,
             "weekday": 0
           },
           {
@@ -2125,7 +2086,7 @@
           },
           {
             "date": "2026-05-13",
-            "count": 3,
+            "count": 4,
             "weekday": 3
           },
           {
@@ -2140,8 +2101,17 @@
           },
           {
             "date": "2026-05-16",
-            "count": 0,
+            "count": 61,
             "weekday": 6
+          }
+        ]
+      },
+      {
+        "days": [
+          {
+            "date": "2026-05-17",
+            "count": 12,
+            "weekday": 0
           }
         ]
       }
