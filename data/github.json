@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-27T09:36:07.175Z",
+  "fetchedAt": "2026-05-28T09:52:42.690Z",
   "pinned": [
     {
       "name": "lookout",
@@ -76,7 +76,7 @@
     }
   ],
   "calendar": {
-    "total": 922,
+    "total": 924,
     "weeks": [
       {
         "days": [
@@ -2125,8 +2125,13 @@
           },
           {
             "date": "2026-05-27",
-            "count": 4,
+            "count": 6,
             "weekday": 3
+          },
+          {
+            "date": "2026-05-28",
+            "count": 0,
+            "weekday": 4
           }
         ]
       }
