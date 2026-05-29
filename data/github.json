@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-05-28T09:52:42.690Z",
+  "fetchedAt": "2026-05-29T09:43:17.882Z",
   "pinned": [
     {
       "name": "lookout",
       "description": "plug-and-play visual QA CLI: chromedp + local vision model",
       "url": "https://github.com/alexmchughdev/lookout",
-      "stars": 6,
+      "stars": 7,
       "forks": 1,
       "language": {
         "name": "Go",
@@ -2132,6 +2132,11 @@
             "date": "2026-05-28",
             "count": 0,
             "weekday": 4
+          },
+          {
+            "date": "2026-05-29",
+            "count": 0,
+            "weekday": 5
           }
         ]
       }
