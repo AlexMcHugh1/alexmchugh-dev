@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-06-02T10:12:29.037Z",
+  "fetchedAt": "2026-06-03T10:48:55.146Z",
   "pinned": [
     {
       "name": "lookout",
       "description": "plug-and-play visual QA CLI: chromedp + local vision model",
       "url": "https://github.com/alexmchughdev/lookout",
-      "stars": 7,
+      "stars": 8,
       "forks": 1,
       "language": {
         "name": "Go",
@@ -54,15 +54,6 @@
       "topics": []
     },
     {
-      "name": "cicd-gitops-pipeline",
-      "description": "End-to-end CI/CD GitOps pipeline: GitHub Actions builds, GHCR hosts, ArgoCD reconciles, RKE2 runs. Three production apps reachable via Cloudflare Tunnel on a self-hosted home cluster.",
-      "url": "https://github.com/alexmchughdev/cicd-gitops-pipeline",
-      "stars": 1,
-      "forks": 0,
-      "language": null,
-      "topics": []
-    },
-    {
       "name": "cerberus",
       "description": "Know what's happening on your network before it becomes a problem: real-time eBPF monitoring",
       "url": "https://github.com/alexmchughdev/cerberus",
@@ -76,7 +67,7 @@
     }
   ],
   "calendar": {
-    "total": 927,
+    "total": 959,
     "weeks": [
       {
         "days": [
@@ -2115,13 +2106,18 @@
           },
           {
             "date": "2026-06-01",
-            "count": 2,
+            "count": 3,
             "weekday": 1
           },
           {
             "date": "2026-06-02",
-            "count": 1,
+            "count": 32,
             "weekday": 2
+          },
+          {
+            "date": "2026-06-03",
+            "count": 0,
+            "weekday": 3
           }
         ]
       }
