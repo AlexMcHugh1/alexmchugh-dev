@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-07T08:48:35.538Z",
+  "fetchedAt": "2026-06-08T10:25:47.084Z",
   "pinned": [
     {
       "name": "lookout",
@@ -67,7 +67,7 @@
     }
   ],
   "calendar": {
-    "total": 974,
+    "total": 1035,
     "weeks": [
       {
         "days": [
@@ -2072,12 +2072,12 @@
           },
           {
             "date": "2026-06-02",
-            "count": 34,
+            "count": 56,
             "weekday": 2
           },
           {
             "date": "2026-06-03",
-            "count": 11,
+            "count": 38,
             "weekday": 3
           },
           {
@@ -2092,7 +2092,7 @@
           },
           {
             "date": "2026-06-06",
-            "count": 0,
+            "count": 8,
             "weekday": 6
           }
         ]
@@ -2101,8 +2101,13 @@
         "days": [
           {
             "date": "2026-06-07",
-            "count": 0,
+            "count": 4,
             "weekday": 0
+          },
+          {
+            "date": "2026-06-08",
+            "count": 0,
+            "weekday": 1
           }
         ]
       }
