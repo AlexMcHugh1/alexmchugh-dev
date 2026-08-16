@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-15T06:27:08.479Z",
+  "fetchedAt": "2026-08-16T06:29:14.488Z",
   "pinned": [
     {
       "name": "lookout",
@@ -69,45 +69,6 @@
   "calendar": {
     "total": 1173,
     "weeks": [
-      {
-        "days": [
-          {
-            "date": "2025-08-10",
-            "count": 0,
-            "weekday": 0
-          },
-          {
-            "date": "2025-08-11",
-            "count": 0,
-            "weekday": 1
-          },
-          {
-            "date": "2025-08-12",
-            "count": 0,
-            "weekday": 2
-          },
-          {
-            "date": "2025-08-13",
-            "count": 0,
-            "weekday": 3
-          },
-          {
-            "date": "2025-08-14",
-            "count": 0,
-            "weekday": 4
-          },
-          {
-            "date": "2025-08-15",
-            "count": 0,
-            "weekday": 5
-          },
-          {
-            "date": "2025-08-16",
-            "count": 0,
-            "weekday": 6
-          }
-        ]
-      },
       {
         "days": [
           {
@@ -2133,6 +2094,15 @@
             "date": "2026-08-15",
             "count": 0,
             "weekday": 6
+          }
+        ]
+      },
+      {
+        "days": [
+          {
+            "date": "2026-08-16",
+            "count": 0,
+            "weekday": 0
           }
         ]
       }
